@@ -1,0 +1,350 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+
+
+}
+
+.navbar-links {
+    display: flex;
+    column-gap: 20px;
+
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: rgb(15, 15, 52);
+}
+
+.navbar-links a:hover {
+    color: rgb(255, 0, 110);
+}
+
+.menu-toggle {
+    display: none;
+}
+
+/*side menu*/
+.side-navbar {
+    background-color: rgb(36, 36, 136);
+    color: white;
+    width: 40%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -60%;
+    padding: 20px;
+    transition: 1s;
+
+}
+
+.side-navbar-link a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.side-navbar-link {
+    margin-bottom: 30px;
+}
+
+.side-navbar-link a:hover {
+    color: rgb(255, 0, 110);
+}
+
+i {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 50px;
+}
+
+.shop-now-btn {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+    background-color: rgb(36, 36, 136);
+    color: white;
+    cursor: pointer;
+}
+
+/*about section*/
+.about-us {
+    padding: 20px;
+}
+
+.about-us-container-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.about-us-container-2 {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.about-us-container-2 div {
+    background-color: rgba(200, 200, 193, 0.879);
+    border-radius: 5px;
+    padding: 10px;
+
+}
+
+/*new arrivals*/
+.new-arrival {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+
+}
+
+.new-arrival-container {
+    position: relative;
+    flex-basis: 20%;
+
+}
+.new-arrival-container img {
+    border-radius: 5px;
+}
+
+.buy-now-btn {
+    position: absolute;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-top: 10px;
+    top: 50%;
+    left: 20%;
+    border-radius: 10px;
+    border: none;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+.news{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+.news input {
+    padding: 10px;
+    width: 300px;
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 80vw;
+
+}
+.subscribe-btn{
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: rgb(37, 37, 108);
+    border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.footer{
+    margin-top: 20px;
+    background-color: rgb(30, 30, 72);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+.footer p{
+    text-align: center;
+}
+.footer i{
+    margin: 10px;
+    cursor: pointer;
+    padding-left: 40px;
+}
+
+/*collection section*/
+.product-section{
+    margin-top: 20px;
+
+
+}
+.product-search{
+    width: 80%;
+    border: solid black 2px;
+    border-radius: 20px;
+    display: flex;
+    margin: auto;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+.product-search input{
+    border: none;
+    background-color: transparent;
+    width: 100%;
+}
+.product-search input:focus{
+    outline: none;
+}
+.products{
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-around;
+
+}
+.product-box{
+    text-align: center;
+    flex-basis: 20%;
+
+}
+.product-box img{
+    border-radius: 10px;
+
+}
+/*contact us section*/
+.contact-us{
+    margin-top: 20px;
+    margin-left: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 30%;
+    background-color: rgb(38, 38, 87);
+    color: white;
+    border-radius: 10px;
+
+}
+.contact-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+    height: 400px;
+}
+.contact-form input, .contact-form textarea{
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+.contact-form input:focus, .contact-form textarea:focus{
+    outline: none;
+}
+.submit-btn{
+    width: 30%;
+    padding: 10px;
+    background-color: rgb(0, 81, 231);
+    border: none;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 40%;
+    margin-top: 30px;
+}
+/*about us page*/
+.about-us-page{
+    padding: 50px;
+    margin-top: 20px;
+
+}
+.about-h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+
+
+/*media queries*/
+@media screen and (max-width:700px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .navbar-links {
+        display: none;
+    }
+
+    .header-img {
+        display: none;
+    }
+
+    .about-us-container-1 {
+        flex-direction: column;
+    }
+    .about-us-container-1-p{
+        display: none;
+    }
+
+    .about-us-container-2 {
+        flex-direction: column;
+    }
+    .contact-us{
+    margin-top: 20px;
+    margin-left: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 50%;
+    background-color: rgb(38, 38, 87);
+    color: white;
+    border-radius: 10px;
+
+}
+.contact-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+    height: 400px;
+}
+.contact-form input, .contact-form textarea{
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+.contact-form input:focus, .contact-form textarea:focus{
+    outline: none;
+}
+.submit-btn{
+    width: 40%;
+    padding: 10px;
+    background-color: rgb(0, 81, 231);
+    border: none;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 30px;
+}
+
+
+}
