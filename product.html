@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dhariya Couture Product Page – View product details and discover related styles.">
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>Product Detail – Dhariya Couture</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h1 class="logo">DHARIYA COUTURE</h1>
+
+        <div class="navbar-links">
+            <a href="index.html">HOME</a>
+            <a href="collection.html">COLLECTIONS</a>
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html">CONTACT</a>
+
+            <div class="profile-menu">
+                <i class="fa-solid fa-circle-user fa-xl"></i>
+                <div class="dropdown">
+                    <a href="profile.html">My Account</a>
+                    <a href="orders.html">Orders</a>
+                    <a href="wishlist.html">Wishlist</a>
+                    <a href="login.html" id="login-link">Login</a>
+                    <a href="#" id="logout-link" onclick="handleLogout(event)">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <div class="cart"><a href="cart.html">🛒 <span id="cart-count">0</span></a></div>
+            <div class="wishlist"><a href="wishlist.html">♡ <span id="wishlist-count">0</span></a></div>
+            <i class="fa-solid fa-bars menu-toggle" onclick="openNav()"></i>
+        </div>
+    </nav>
+
+    <div class="nav-overlay"></div>
+
+    <div class="side-navbar">
+        <i class="fa-solid fa-xmark close-btn" onclick="closeNav()"></i>
+        <a href="index.html">HOME</a>
+        <a href="collection.html">COLLECTIONS</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="cart.html">CART</a>
+        <a href="wishlist.html">WISHLIST</a>
+        <a href="profile.html">MY ACCOUNT</a>
+        <a href="login.html" id="side-login-link">Login</a>
+        <a href="#" id="side-logout-link" onclick="handleLogout(event)">Logout</a>
+    </div>
+
+    <main class="product-page" id="product-page">
+        <section class="product-detail">
+            <div>
+                <img id="detail-image" src="Image/dress1.jpg" alt="Product image">
+            </div>
+            <div class="product-copy">
+                <span class="badge" id="detail-badge">Loading...</span>
+                <h1 id="detail-title">Product Title</h1>
+                <p class="description" id="detail-description">Product description will show here once you select a product.</p>
+                <div class="price-box">
+                    <span class="price" id="detail-price">₹0</span>
+                </div>
+                <div class="action-group">
+                    <button class="cartBtn" id="detail-add-cart">Add to Cart</button>
+                    <button class="primary-btn" id="detail-buy-now">Buy Now</button>
+                    <button class="wishlist-btn" id="detail-wishlist" onclick="addToWishlist(this)" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <p class="product-note">Explore related items below based on your selection.</p>
+            </div>
+        </section>
+
+        <section class="suggestion-section">
+            <h3>Suggested for you</h3>
+            <div class="suggestions-grid" id="suggestions-grid"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <h3>DHARIYA COUTURE</h3>
+        <p>Trendy | Elegant | Affordable</p>
+        <p>&copy; 2026 DHARIYA COUTURE. All rights reserved.</p>
+        <p>It is a Demo Website to Showcase my Skills by <a href="https://www.linkedin.com/in/mohamed-dhakeer/" target="_blank">Mohamed Dhakeer N</a></p>
+    </footer>
+
+    <div id="toast"></div>
+
+    <script src="auth.js"></script>
+    <script src="index.js"></script>
+    <script src="product.js"></script>
+
+</body>
+
+</html>

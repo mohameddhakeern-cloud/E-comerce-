@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Checkout and address details for Dhariya Couture.">
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>Checkout – Dhariya Couture</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h1 class="logo">DHARIYA COUTURE</h1>
+
+        <div class="navbar-links">
+            <a href="index.html">HOME</a>
+            <a href="collection.html">COLLECTIONS</a>
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html">CONTACT</a>
+
+            <div class="profile-menu">
+                <i class="fa-solid fa-circle-user fa-xl"></i>
+                <div class="dropdown">
+                    <a href="profile.html">My Account</a>
+                    <a href="orders.html">Orders</a>
+                    <a href="wishlist.html">Wishlist</a>
+                    <a href="login.html" id="login-link">Login</a>
+                    <a href="#" id="logout-link" onclick="handleLogout(event)">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <div class="cart"><a href="cart.html">🛒 <span id="cart-count">0</span></a></div>
+            <div class="wishlist"><a href="wishlist.html">♡ <span id="wishlist-count">0</span></a></div>
+            <i class="fa-solid fa-bars menu-toggle" onclick="openNav()"></i>
+        </div>
+    </nav>
+
+    <div class="nav-overlay"></div>
+
+    <div class="side-navbar">
+        <i class="fa-solid fa-xmark close-btn" onclick="closeNav()"></i>
+        <a href="index.html">HOME</a>
+        <a href="collection.html">COLLECTIONS</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="cart.html">CART</a>
+        <a href="wishlist.html">WISHLIST</a>
+        <a href="profile.html">MY ACCOUNT</a>
+        <a href="login.html" id="side-login-link">Login</a>
+        <a href="#" id="side-logout-link" onclick="handleLogout(event)">Logout</a>
+    </div>
+
+    <main class="checkout-page">
+        <div class="checkout-container">
+            <h2>Checkout</h2>
+
+            <div class="checkout-content">
+                <!-- LEFT COLUMN: Forms and Details -->
+                <div class="checkout-left">
+                    <!-- DELIVERY ADDRESS -->
+                    <div class="checkout-section">
+                        <h3><i class="fa-solid fa-truck"></i> Delivery Address</h3>
+                        <div id="delivery-address-display">
+                            <!-- Address will be loaded here -->
+                        </div>
+                        <button type="button" class="change-address-btn" onclick="showAddressForm()">
+                            <i class="fa-solid fa-edit"></i> Change Address
+                        </button>
+                    </div>
+
+                    <!-- ADDRESS FORM (Hidden by default) -->
+                    <div class="checkout-section address-form-section" id="addressFormSection">
+                        <h3><i class="fa-solid fa-map-marker-alt"></i> Add/Edit Address</h3>
+                        <form id="addressForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fullName"><i class="fa-solid fa-user"></i> Full Name</label>
+                                    <input type="text" id="fullName" required placeholder="Enter your full name">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone"><i class="fa-solid fa-phone"></i> Phone Number</label>
+                                    <input type="tel" id="phone" required placeholder="Enter your phone number">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="address"><i class="fa-solid fa-location-dot"></i> Address</label>
+                                    <textarea id="address" required placeholder="Enter your full address"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city"><i class="fa-solid fa-city"></i> City</label>
+                                    <input type="text" id="city" required placeholder="Enter your city">
+                                </div>
+                                <div class="form-group">
+                                    <label for="state"><i class="fa-solid fa-map"></i> State</label>
+                                    <input type="text" id="state" required placeholder="Enter your state">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="pincode"><i class="fa-solid fa-hashtag"></i> Pincode</label>
+                                    <input type="text" id="pincode" required placeholder="Enter your pincode">
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="secondary-btn" onclick="hideAddressForm()">Cancel</button>
+                                <button type="submit" class="primary-btn">Save Address</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- DELIVERY INFORMATION -->
+                    <div class="checkout-section">
+                        <h3><i class="fa-solid fa-clock"></i> Delivery Information</h3>
+                        <div class="delivery-info">
+                            <div class="delivery-item">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                <span>Estimated Delivery: <strong>3-5 business days</strong></span>
+                            </div>
+                            <div class="delivery-item">
+                                <i class="fa-solid fa-truck"></i>
+                                <span>Free shipping on orders above ₹999</span>
+                            </div>
+                            <div class="delivery-item">
+                                <i class="fa-solid fa-shield"></i>
+                                <span>Cash on Delivery available</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PAYMENT METHOD -->
+                    <div class="checkout-section">
+                        <h3><i class="fa-solid fa-credit-card"></i> Payment Method</h3>
+                        <div class="payment-methods">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="upi" checked>
+                                <span class="payment-label">
+                                    <i class="fa-solid fa-mobile-screen-button"></i>
+                                    UPI / PhonePe / Google Pay
+                                </span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="card">
+                                <span class="payment-label">
+                                    <i class="fa-solid fa-credit-card"></i>
+                                    Credit/Debit Card
+                                </span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="cod">
+                                <span class="payment-label">
+                                    <i class="fa-solid fa-money-bill-wave"></i>
+                                    Cash on Delivery
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- TRUST INDICATORS -->
+                    <div class="checkout-section trust-section">
+                        <div class="trust-indicators">
+                            <div class="trust-item">
+                                <i class="fa-solid fa-lock"></i>
+                                <span>Secure Payment</span>
+                            </div>
+                            <div class="trust-item">
+                                <i class="fa-solid fa-rotate-left"></i>
+                                <span>Easy Returns</span>
+                            </div>
+                            <div class="trust-item">
+                                <i class="fa-solid fa-certificate"></i>
+                                <span>100% Authentic</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: Order Summary -->
+                <div class="checkout-right">
+                    <div class="order-summary-sticky">
+                        <h3><i class="fa-solid fa-shopping-cart"></i> Order Summary</h3>
+
+                        <!-- PRODUCT DETAILS -->
+                        <div class="order-products" id="order-products">
+                            <!-- Products will be loaded here -->
+                        </div>
+
+                        <!-- COUPON SECTION -->
+                        <div class="coupon-section">
+                            <div class="coupon-input-group">
+                                <input type="text" id="couponCode" placeholder="Enter coupon code" maxlength="20">
+                                <button type="button" class="apply-coupon-btn" onclick="applyCoupon()">Apply</button>
+                            </div>
+                            <div id="coupon-message" class="coupon-message"></div>
+                        </div>
+
+                        <!-- PRICE BREAKDOWN -->
+                        <div class="price-breakdown">
+                            <div class="price-row">
+                                <span>Subtotal</span>
+                                <span id="subtotal">₹0</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Discount</span>
+                                <span id="discount">-₹0</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Delivery Charges</span>
+                                <span id="delivery-charges">₹0</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Tax (GST)</span>
+                                <span id="tax">₹0</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Platform Fee</span>
+                                <span id="platform-fee">₹0</span>
+                            </div>
+                        </div>
+
+                        <!-- TOTAL AMOUNT -->
+                        <div class="total-amount">
+                            <div class="total-divider"></div>
+                            <div class="price-row total-row">
+                                <span>Total Amount</span>
+                                <span id="total-amount">₹0</span>
+                            </div>
+                            <div id="savings-message" class="savings-message"></div>
+                        </div>
+
+                        <!-- PLACE ORDER BUTTON -->
+                        <button type="button" class="place-order-btn" onclick="placeOrder()">
+                            <i class="fa-solid fa-shopping-bag"></i> Place Order
+                        </button>
+
+                        <!-- TERMS AND CONDITIONS -->
+                        <div class="terms-conditions">
+                            <p>By placing this order, you agree to our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <h3>DHARIYA COUTURE</h3>
+        <p>Trendy | Elegant | Affordable</p>
+        <p>&copy; 2026 DHARIYA COUTURE. All rights reserved.</p>
+        <p>It is a Demo Website to Showcase my Skills by <a href="https://www.linkedin.com/in/mohamed-dhakeer/" target="_blank">Mohamed Dhakeer N</a></p>
+    </footer>
+
+    <div id="toast"></div>
+
+    <script src="auth.js"></script>
+    <script src="index.js"></script>
+    <script src="product.js"></script>
+    <script src="checkout.js"></script>
+    <script src="debug.js"></script>
+
+</body>
+
+</html>

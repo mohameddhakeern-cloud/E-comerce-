@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Dhariya Couture – Our story, mission and values.">
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>About – Dhariya Couture</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h1 class="logo">DHARIYA COUTURE</h1>
+
+        <div class="navbar-links">
+            <a href="index.html">HOME</a>
+            <a href="collection.html">COLLECTIONS</a>
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html">CONTACT</a>
+
+            <!-- PROFILE DROPDOWN -->
+            <div class="profile-menu">
+                <i class="fa-solid fa-circle-user fa-xl"></i>
+                <div class="dropdown">
+                    <a href="profile.html">My Account</a>
+                    <a href="orders.html">Orders</a>
+                    <a href="wishlist.html">Wishlist</a>
+                    <a href="login.html" id="login-link">Login</a>
+                    <a href="#" id="logout-link" onclick="handleLogout(event)">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <div class="cart"><a href="cart.html">🛒 <span id="cart-count">0</span></a></div>
+            <i class="fa-solid fa-bars menu-toggle" onclick="openNav()"></i>
+        </div>
+    </nav>
+
+    <!-- OVERLAY -->
+    <div class="nav-overlay"></div>
+
+   <!-- SIDE NAV -->
+    <div class="side-navbar">
+        <i class="fa-solid fa-xmark close-btn" onclick="closeNav()"></i>
+        <a href="index.html">HOME</a>
+        <a href="collection.html">COLLECTIONS</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="cart.html">CART</a>
+        <a href="wishlist.html">WISHLIST</a>
+        <a href="profile.html">MY ACCOUNT</a>
+        <!-- Login/Logout toggled by JS -->
+        <a href="login.html" id="side-login-link">Login</a>
+        <a href="#" id="side-logout-link" onclick="handleLogout(event)">Logout</a>
+    </div>
+
+    <!-- ABOUT HERO -->
+    <div class="about-hero">
+        <h1>About Dhariya Couture</h1>
+        <p>Fashion that tells your story</p>
+    </div>
+
+    <!-- ABOUT CONTENT -->
+    <section class="about">
+
+        <div class="about-intro">
+            <p>
+                Welcome to <strong>Dhariya Couture</strong>, your ultimate destination for trendy and elegant clothing.
+                We bring you a curated collection of stylish outfits designed to match your personality
+                and elevate your fashion game.
+            </p>
+            <p>
+                We specialise in a wide range of dresses available in beautiful colours —
+                perfect for every occasion, whether it's casual wear, parties, or special events.
+            </p>
+        </div>
+
+        <!-- STATS ROW -->
+        <div class="about-stats">
+            <div class="stat-box">
+                <h2>500+</h2>
+                <p>Styles Available</p>
+            </div>
+            <div class="stat-box">
+                <h2>10K+</h2>
+                <p>Happy Customers</p>
+            </div>
+            <div class="stat-box">
+                <h2>100%</h2>
+                <p>Secure Shopping</p>
+            </div>
+            <div class="stat-box">
+                <h2>Free</h2>
+                <p>Easy Returns</p>
+            </div>
+        </div>
+
+        <!-- MISSION -->
+        <div class="about-block">
+            <h3><i class="fa-solid fa-bullseye"></i> Our Mission</h3>
+            <p>
+                To provide a seamless and enjoyable shopping experience with a focus on quality,
+                affordability, and customer satisfaction. Fashion should feel effortless — and
+                at Dhariya Couture, we make sure it does.
+            </p>
+        </div>
+
+        <!-- WHY CHOOSE US -->
+        <div class="about-block">
+            <h3><i class="fa-solid fa-star"></i> Why Choose Dhariya Couture?</h3>
+            <div class="about-features">
+                <div class="about-feature-card">
+                    <i class="fa-solid fa-shirt"></i>
+                    <h4>Trendy Collections</h4>
+                    <p>Always up to date with the latest styles and seasonal trends.</p>
+                </div>
+                <div class="about-feature-card">
+                    <i class="fa-solid fa-tag"></i>
+                    <h4>Affordable Pricing</h4>
+                    <p>Premium fashion without the premium price tag.</p>
+                </div>
+                <div class="about-feature-card">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h4>Secure & Reliable</h4>
+                    <p>Safe payments and a shopping experience you can trust.</p>
+                </div>
+                <div class="about-feature-card">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <h4>Easy Returns</h4>
+                    <p>Hassle-free returns — your satisfaction is our priority.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-closing">
+            <p>Thank you for choosing <strong>Dhariya Couture</strong>. We are excited to be part of your fashion
+                journey! ✨</p>
+            <a href="collection.html" class="primary-btn">Shop the Collection</a>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <h3>DHARIYA COUTURE</h3>
+        <p>Trendy | Elegant | Affordable</p>
+        <p>&copy; 2023 DHARIYA COUTURE. All rights reserved.</p>
+        <p>It is a Demo Website to Showcase my Skills by <a href="https://www.linkedin.com/in/mohamed-dhakeer/" target="_blank">Mohamed Dhakeer N</a></p>
+    </footer>
+
+    
+    <script src="auth.js"></script>
+    <script src="index.js"></script>
+
+     <script>
+        // Login / Logout toggle
+        (function () {
+            const user = getCurrentUser();
+            const loginLink = document.getElementById('login-link');
+            const logoutLink = document.getElementById('logout-link');
+            const sideLoginLink = document.getElementById('side-login-link');
+            const sideLogoutLink = document.getElementById('side-logout-link');
+
+            if (user) {
+                if (loginLink) loginLink.style.display = 'none';
+                if (logoutLink) logoutLink.style.display = 'block';
+                if (sideLoginLink) sideLoginLink.style.display = 'none';
+                if (sideLogoutLink) sideLogoutLink.style.display = 'block';
+            } else {
+                if (loginLink) loginLink.style.display = 'block';
+                if (logoutLink) logoutLink.style.display = 'none';
+                if (sideLoginLink) sideLoginLink.style.display = 'block';
+                if (sideLogoutLink) sideLogoutLink.style.display = 'none';
+            }
+        })();
+    </script>
+        <script>
+        function handleLogout(e) {
+            e.preventDefault();
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
+        }
+    </script>
+
+
+</body>
+
+</html>

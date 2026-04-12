@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist – Dhariya Couture</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="wishlist.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <h1 class="logo">DHARIYA COUTURE</h1>
+
+    <div class="navbar-links">
+        <a href="index.html">HOME</a>
+        <a href="collection.html">COLLECTIONS</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+
+        <div class="profile-menu">
+            <i class="fa-solid fa-circle-user fa-xl"></i>
+            <div class="dropdown">
+                <a href="profile.html">My Account</a>
+                <a href="orders.html">Orders</a>
+                <a href="wishlist.html">Wishlist</a>
+                <a href="login.html" id="login-link">Login</a>
+                <a href="#" onclick="handleLogout(event)">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-right">
+        <div class="cart">
+            <a href="cart.html">🛒 <span id="cart-count">0</span></a>
+        </div>
+        <div class="wishlist"><a href="wishlist.html">♡ <span id="wishlist-count">0</span></a></div>
+        <i class="fa-solid fa-bars menu-toggle" onclick="openNav()"></i>
+    </div>
+</nav>
+
+<!-- SIDE NAV -->
+    <div class="side-navbar">
+        <i class="fa-solid fa-xmark close-btn" onclick="closeNav()"></i>
+        <a href="index.html">HOME</a>
+        <a href="collection.html">COLLECTIONS</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="cart.html">CART</a>
+        <a href="wishlist.html">WISHLIST</a>
+        <a href="profile.html">MY ACCOUNT</a>
+        <!-- Login/Logout toggled by JS -->
+        <a href="login.html" id="side-login-link">Login</a>
+        <a href="#" id="side-logout-link" onclick="handleLogout(event)">Logout</a>
+    </div>
+<div class="nav-overlay"></div>
+
+<!-- PAGE HEADER -->
+<section class="wishlist-header">
+    <h1 class="section-heading">My Wishlist</h1>
+    <p>Your saved luxury picks</p>
+</section>
+
+<!-- WISHLIST ITEMS -->
+<section class="wishlist-container" id="wishlistContainer">
+
+    <!-- Item Card -->
+    <div class="wishlist-card">
+        <div class="wishlist-img">
+            <img src="https://via.placeholder.com/300" alt="product">
+            <button class="remove-icon" title="Remove from wishlist"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="wishlist-info">
+            <h3>Elegant Silk Saree</h3>
+
+            <div class="price-box">
+                <span class="price">₹3,499</span>
+                <span class="old-price">₹4,999</span>
+                <span class="discount">(30% OFF)</span>
+            </div>
+
+            <button class="move-btn">MOVE TO BAG</button>
+        </div>
+    </div>
+
+</section>
+
+<!-- EMPTY STATE -->
+<div class="empty-wishlist" id="emptyWishlist">
+    <i class="fa-regular fa-heart"></i>
+    <h2>Your Wishlist is Empty</h2>
+    <p>Explore collections and add your favorite styles</p>
+    <a href="collection.html" class="primary-btn">Shop Now</a>
+</div>
+
+ <!-- FOOTER -->
+    <footer class="footer">
+        <h3>DHARIYA COUTURE</h3>
+        <p>Trendy | Elegant | Affordable</p>
+        <p>&copy; 2023 DHARIYA COUTURE. All rights reserved.</p>
+        <p>It is a Demo Website to Showcase my Skills by <a href="https://www.linkedin.com/in/mohamed-dhakeer/" target="_blank">Mohamed Dhakeer N</a></p>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="index.js"></script>
+    <script src="wishlist.js"></script>
+
+ <script>
+        // Login / Logout toggle
+        (function () {
+            const user = getCurrentUser();
+            const loginLink = document.getElementById('login-link');
+            const logoutLink = document.getElementById('logout-link');
+            const sideLoginLink = document.getElementById('side-login-link');
+            const sideLogoutLink = document.getElementById('side-logout-link');
+
+            if (user) {
+                if (loginLink) loginLink.style.display = 'none';
+                if (logoutLink) logoutLink.style.display = 'block';
+                if (sideLoginLink) sideLoginLink.style.display = 'none';
+                if (sideLogoutLink) sideLogoutLink.style.display = 'block';
+            } else {
+                if (loginLink) loginLink.style.display = 'block';
+                if (logoutLink) logoutLink.style.display = 'none';
+                if (sideLoginLink) sideLoginLink.style.display = 'block';
+                if (sideLogoutLink) sideLogoutLink.style.display = 'none';
+            }
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>Sign Up – Dhariya Couture</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FIX: renamed from login&signup.css → login.css -->
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+        <div class="login-box">
+
+            <div class="login-logo">DHARIYA COUTURE</div>
+            <h2>Create Account 👗</h2>
+            <p class="login-sub">Join us and start shopping</p>
+            <input type="text" id="firstName" placeholder="First Name" autocomplete="given-name">
+            <input type="text" id="lastName" placeholder="Last Name" autocomplete="family-name">
+            <input type="text" id="username" placeholder="Username" autocomplete="username">
+            <input type="email" id="email" placeholder="Email" autocomplete="email">
+            <input type="password" id="password" placeholder="Password" autocomplete="new-password">
+            <input type="password" id="confirm-password" placeholder="Confirm Password" autocomplete="new-password">
+
+
+            <button class="login-btn" onclick="signup()">Create Account</button>
+
+            <p id="login-msg"></p>
+
+            <p class="signup-prompt">
+                Already have an account?
+                <a href="login.html" class="signup-link">Login</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>

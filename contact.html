@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>Contact — Dhariya Couture</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h1 class="logo">DHARIYA COUTURE</h1>
+
+        <div class="navbar-links">
+            <a href="index.html">HOME</a>
+            <a href="collection.html">COLLECTIONS</a>
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html">CONTACT</a>
+
+            <!-- PROFILE DROPDOWN -->
+            <div class="profile-menu">
+                <i class="fa-solid fa-circle-user fa-xl"></i>
+
+                <div class="dropdown">
+                    <a href="profile.html">My Account</a>
+                    <a href="cart.html">Orders</a>
+                    <a href="cart.html">Wishlist</a>
+                    <!-- Login/Logout toggled by JS -->
+                    <a href="login.html" id="login-link">Login</a>
+                    <a href="#" id="logout-link" onclick="handleLogout(event)">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <div class="cart"><a href="cart.html">🛒 <span id="cart-count">0</span></a></div>
+            <i class="fa-solid fa-bars menu-toggle" onclick="openNav()"></i>
+        </div>
+    </nav>
+
+   <!-- SIDE NAV -->
+    <div class="side-navbar">
+        <i class="fa-solid fa-xmark close-btn" onclick="closeNav()"></i>
+        <a href="index.html">HOME</a>
+        <a href="collection.html">COLLECTIONS</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="cart.html">CART</a>
+        <a href="wishlist.html">WISHLIST</a>
+        <a href="profile.html">MY ACCOUNT</a>
+        <!-- Login/Logout toggled by JS -->
+        <a href="login.html" id="side-login-link">Login</a>
+        <a href="#" id="side-logout-link" onclick="handleLogout(event)">Logout</a>
+    </div>
+    
+
+    <!-- BANNER -->
+    <div class="contact-banner">
+        <div class="banner-text">
+            <h1>Contact <span>Us</span></h1>
+            <p>We're here to help — reach out anytime</p>
+        </div>
+        <span class="banner-badge">We reply in 24 hrs</span>
+    </div>
+
+    <!-- CONTACT GRID -->
+    <div class="contact-page">
+
+        <!-- LEFT: Info Sidebar -->
+        <aside class="contact-info">
+            <div class="info-header">
+                <h3>Our Details</h3>
+                <p>Available Mon–Sat, 10am–7pm IST</p>
+            </div>
+            <div class="info-body">
+                <div class="detail-row">
+                    <div class="detail-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="detail-text">
+                        <label>Atelier</label>
+                        <span>Chennai, Tamil Nadu</span>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="detail-text">
+                        <label>Phone</label>
+                        <span>+91 9025750478</span>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="detail-text">
+                        <label>Email</label>
+                        <span>support@dhariyacouture.com</span>
+                    </div>
+                </div>
+                <div class="info-divider"></div>
+                <p class="social-title">Follow Us</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener" title="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/" target="_blank" rel="noopener" title="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                </div>
+                <div class="hours-chip">
+                    <strong>Business Hours</strong>
+                    Monday – Saturday: 10:00 AM – 7:00 PM IST<br>
+                    Sunday: Closed
+                </div>
+            </div>
+        </aside>
+
+        <!-- RIGHT: Form Card -->
+        <div class="contact-form-card">
+            <div class="form-card-header">
+                <i class="fa-regular fa-paper-plane"></i>
+                <h2>Send us a Message</h2>
+                <p>All fields marked * are required</p>
+            </div>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-row">
+                    <div class="field-group">
+                        <label>Your Name *</label>
+                        <input type="text" placeholder="Full name" required>
+                    </div>
+                    <div class="field-group">
+                        <label>Email Address *</label>
+                        <input type="email" placeholder="you@email.com" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="field-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="+91 XXXXX XXXXX">
+                    </div>
+                    <div class="field-group">
+                        <label>Subject</label>
+                        <input type="text" placeholder="Order, Return, Enquiry…">
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label>Message *</label>
+                    <textarea rows="5" placeholder="Describe your query in detail…" required id="msgArea" oninput="updateCount()"></textarea>
+                    <div class="field-hint"><span id="charCount">0</span> / 500</div>
+                </div>
+            </form>
+            <div class="form-footer">
+                <p class="form-note">
+                    <i class="fa-solid fa-lock"></i>
+                    Your information is safe with us
+                </p>
+                <button class="submit-btn" id="submitBtn" onclick="handleSubmit(event)">
+                    Send Message &nbsp;<i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CHIPS ROW -->
+    <div class="info-chips">
+        <div class="chip-card">
+            <div class="chip-icon"><i class="fa-solid fa-rotate-left"></i></div>
+            <div class="chip-text">
+                <strong>Easy Returns</strong>
+                <span>30-day hassle-free return policy</span>
+            </div>
+        </div>
+        <div class="chip-card">
+            <div class="chip-icon"><i class="fa-solid fa-truck-fast"></i></div>
+            <div class="chip-text">
+                <strong>Fast Delivery</strong>
+                <span>Pan-India shipping in 3–5 days</span>
+            </div>
+        </div>
+        <div class="chip-card">
+            <div class="chip-icon"><i class="fa-solid fa-headset"></i></div>
+            <div class="chip-text">
+                <strong>24/7 Support</strong>
+                <span>Chat, email or call us anytime</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <span class="footer-logo">Dhariya Couture</span> 
+        <p>&copy; 2025 Dhariya Couture. All rights reserved.</p>
+        <p>Chennai · Tamil Nadu · India</p>
+        <p>It is a Demo Website to Showcase my Skills by <a href="https://www.linkedin.com/in/mohamed-dhakeer/" target="_blank">Mohamed Dhakeer N</a></p>
+    </footer>
+
+    <script>
+        function openNav() {
+            document.getElementById('sideNav').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        }
+        function closeNav() {
+            document.getElementById('sideNav').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+        function updateCount() {
+            const area = document.getElementById('msgArea');
+            document.getElementById('charCount').textContent = area.value.length;
+        }
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerHTML = 'Message Sent &nbsp;<i class="fa-solid fa-check"></i>';
+            btn.classList.add('sent');
+        }
+        // Login / Logout toggle based on localStorage auth flag
+        (function () {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const loginLink = document.getElementById('login-link');
+            const logoutLink = document.getElementById('logout-link');
+
+            if (isLoggedIn) {
+                loginLink.style.display = 'none';
+                logoutLink.style.display = 'block';
+            } else {
+                loginLink.style.display = 'block';
+                logoutLink.style.display = 'none';
+            }
+        })();
+
+        function handleLogout(e) {
+            e.preventDefault();
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
+        }
+  
+    </script>
+</body>
+</html>

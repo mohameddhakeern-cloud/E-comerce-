@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Dhariya Couture – Premium fashion at affordable prices. Shop trending dresses, new arrivals & more.">
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>Dhariya Couture</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h1 class="logo">DHARIYA COUTURE</h1>
+
+        <div class="navbar-links">
+            <a href="index.html">HOME</a>
+            <a href="collection.html">COLLECTIONS</a>
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html">CONTACT</a>
+
+            <!-- PROFILE DROPDOWN -->
+            <div class="profile-menu">
+                <i class="fa-solid fa-circle-user fa-xl"></i>
+
+                <div class="dropdown">
+                    <a href="profile.html">My Account</a>
+                    <a href="cart.html">Orders</a>
+                    <a href="wishlist.html">Wishlist</a>
+                    <!-- Login/Logout toggled by JS -->
+                    <a href="login.html" id="login-link">Login</a>
+                    <a href="#" id="logout-link" onclick="handleLogout(event)">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <div class="cart"><a href="cart.html">🛒 <span id="cart-count">0</span></a></div>
+            <div class="wishlist"><a href="wishlist.html">♡ <span id="wishlist-count">0</span></a></div>
+            <i class="fa-solid fa-bars menu-toggle" onclick="openNav()"></i>
+        </div>
+    </nav>
+
+    <!-- SIDE NAV -->
+    <div class="side-navbar">
+        <i class="fa-solid fa-xmark close-btn" onclick="closeNav()"></i>
+        <a href="index.html">HOME</a>
+        <a href="collection.html">COLLECTIONS</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="cart.html">CART</a>
+        <a href="wishlist.html">WISHLIST</a>
+        <a href="profile.html">MY ACCOUNT</a>
+        <!-- Login/Logout toggled by JS -->
+        <a href="login.html" id="side-login-link">Login</a>
+        <a href="#" id="side-logout-link" onclick="handleLogout(event)">Logout</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <img src="Image/girlsdresshang.jpg" alt="banner">
+        <div class="hero-content">
+            <h1>Elevate Your Style ✨</h1>
+            <p>Premium Fashion | Affordable Price</p>
+            <a href="collection.html" class="primary-btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- OFFER -->
+    <div class="offer-banner">
+        <div class="offer-text">
+            🔥 Flat 30% OFF on New Arrivals &nbsp;&nbsp;🔥 Flat 30% OFF on New Arrivals &nbsp;&nbsp;🔥 Flat 30% OFF on
+            New Arrivals &nbsp;&nbsp;🔥 Flat 30% OFF on New Arrivals &nbsp;&nbsp;🔥 Flat 30% OFF on New Arrivals
+        </div>
+    </div>
+
+    <!-- CATEGORY PANELS -->
+    <section class="category-panels">
+        <div class="category-card" onclick="window.location.href='collection.html?gender=men'">
+            <div>
+                <h3>Men's Collection</h3>
+                <p>Pants, Shirts, T-Shirts</p>
+            </div>
+        </div>
+        <div class="category-card" onclick="window.location.href='collection.html?gender=women'">
+            <div>
+                <h3>Women's Collection</h3>
+                <p>Tops, Lehangas, T-Shirts</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="products-2">
+        <h2>Trending Products</h2>
+
+        <div class="product-grid">
+
+            <div class="product-card product-card-2" data-slug="men-cargo-pants" data-gender="men" data-category="men-pants" onclick="viewProduct(event, 'men-cargo-pants')">
+                <div class="product-img">
+                    <img src="Image/darkblueTshirt.jpg" alt="Men Cargo Pants" loading="lazy" width="300" height="400">
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); addToWishlist(this)" title="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+                <h4>Men Cargo Pants</h4>
+                <p class="price">₹1299</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCart('Men Cargo Pants',1299)">Add to Cart</button>
+            </div>
+
+            <div class="product-card product-card-2" data-slug="men-linen-shirt" data-gender="men" data-category="men-shirts" onclick="viewProduct(event, 'men-linen-shirt')">
+                <div class="product-img">
+                    <img src="Image/darkgreyShirt.jpg" alt="Men Linen Shirt" loading="lazy" width="300" height="400">
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); addToWishlist(this)" title="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+                <h4>Men Linen Shirt</h4>
+                <p class="price">₹1499</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCart('Men Linen Shirt',1499)">Add to Cart</button>
+            </div>
+
+            <div class="product-card product-card-2" data-slug="women-printed-top" data-gender="women" data-category="women-tops" onclick="viewProduct(event, 'women-printed-top')">
+                <div class="product-img">
+                    <img src="Image/White.jpeg" alt="Women Printed Top" loading="lazy" width="300" height="400">
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); addToWishlist(this)" title="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+                <h4>Women Printed Top</h4>
+                <p class="price">₹1099</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCart('Women Printed Top',1099)">Add to Cart</button>
+            </div>
+
+            <div class="product-card product-card-2" data-slug="women-maroon-lehenga" data-gender="women" data-category="women-lehangas" onclick="viewProduct(event, 'women-maroon-lehenga')">
+                <div class="product-img">
+                    <img src="Image/Maroon.jpeg" alt="Women Maroon Lehenga" loading="lazy" width="300" height="400">
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); addToWishlist(this)" title="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+                <h4>Women Maroon Lehenga</h4>
+                <p class="price">₹2799</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCart('Women Maroon Lehenga',2799)">Add to Cart</button>
+            </div>
+
+            <div class="product-card product-card-2" data-slug="men-grey-tshirt" data-gender="men" data-category="men-tshirts" onclick="viewProduct(event, 'men-grey-tshirt')">
+                <div class="product-img">
+                    <img src="Image/greyTshirt.jpg" alt="Men Grey T-Shirt" loading="lazy" width="300" height="400">
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); addToWishlist(this)" title="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+                <h4>Men Grey T-Shirt</h4>
+                <p class="price">₹999</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCart('Men Grey T-Shirt',999)">Add to Cart</button>
+            </div>
+
+            <div class="product-card product-card-2" data-slug="women-black-tshirt" data-gender="women" data-category="women-tshirts" onclick="viewProduct(event, 'women-black-tshirt')">
+                <div class="product-img">
+                    <img src="Image/blackTshirt.jpg" alt="Women Black T-Shirt" loading="lazy" width="300" height="400">
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); addToWishlist(this)" title="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+                <h4>Women Black T-Shirt</h4>
+                <p class="price">₹1299</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCart('Women Black T-Shirt',1299)">Add to Cart</button>
+            </div>
+
+        </div>
+
+        <h2>New Arrivals</h2>
+
+        <div class="product-grid">
+
+            <div class="product-card product-card-2" data-slug="men-navy-tshirt" data-gender="men" data-category="men-tshirts" onclick="viewProduct(event, 'men-navy-tshirt')">
+                <div class="product-img">
+                    <img src="Image/navyblueTshirt.jpeg" alt="Men Navy T-Shirt" loading="lazy" width="300" height="400">
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); addToWishlist(this)" title="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+                <h4>Men Navy T-Shirt</h4>
+                <p class="price">₹1299</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCart('Men Navy T-Shirt',1299)">Add to Cart</button>
+            </div>
+
+            <div class="product-card product-card-2" data-slug="men-classic-shirt" data-gender="men" data-category="men-shirts" onclick="viewProduct(event, 'men-classic-shirt')">
+                <div class="product-img">
+                    <img src="Image/darkgreyShirt.jpg" alt="Men Classic Shirt" loading="lazy" width="300" height="400">
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); addToWishlist(this)" title="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+                <h4>Men Classic Shirt</h4>
+                <p class="price">₹1399</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCart('Men Classic Shirt',1399)">Add to Cart</button>
+            </div>
+
+            <div class="product-card product-card-2" data-slug="women-ivory-lehenga" data-gender="women" data-category="women-lehangas" onclick="viewProduct(event, 'women-ivory-lehenga')">
+                <div class="product-img">
+                    <img src="Image/dress2.jpeg" alt="Women Ivory Lehenga" loading="lazy" width="300" height="400">
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); addToWishlist(this)" title="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+                <h4>Women Ivory Lehenga</h4>
+                <p class="price">₹2899</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCart('Women Ivory Lehenga',2899)">Add to Cart</button>
+            </div>
+
+            <div class="product-card product-card-2" data-slug="women-red-tshirt" data-gender="women" data-category="women-tshirts" onclick="viewProduct(event, 'women-red-tshirt')">
+                <div class="product-img">
+                    <img src="Image/redTshirt.jpg" alt="Women Red T-Shirt" loading="lazy" width="300" height="400">
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); addToWishlist(this)" title="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+                <h4>Women Red T-Shirt</h4>
+                <p class="price">₹1299</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCart('Women Red T-Shirt',1299)">Add to Cart</button>
+            </div>
+
+            <div class="product-card product-card-2" data-slug="women-white-tshirt" data-gender="women" data-category="women-tshirts" onclick="viewProduct(event, 'women-white-tshirt')">
+                <div class="product-img">
+                    <img src="Image/whiteTshirt.jpg" alt="Women White T-Shirt" loading="lazy" width="300" height="400">
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); addToWishlist(this)" title="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+                <h4>Women White T-Shirt</h4>
+                <p class="price">₹1299</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCart('Women White T-Shirt',1299)">Add to Cart</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features">
+        <div><i class="fa-solid fa-truck-fast"></i>
+            <h4>Free Delivery</h4>
+        </div>
+        <div><i class="fa-solid fa-rotate"></i>
+            <h4>Easy Returns</h4>
+        </div>
+        <div><i class="fa-solid fa-shield"></i>
+            <h4>Secure Payment</h4>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <h3>DHARIYA COUTURE</h3>
+        <p>Trendy | Elegant | Affordable</p>
+        <p>&copy; 2023 DHARIYA COUTURE. All rights reserved.</p>
+        <p>It is a Demo Website to Showcase my Skills by <a href="https://www.linkedin.com/in/mohamed-dhakeer/" target="_blank">Mohamed Dhakeer N</a></p>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="index.js"></script>
+    <script src="product.js"></script>
+
+    <script>
+        // Login / Logout toggle based on localStorage auth flag
+        (function () {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const loginLink = document.getElementById('login-link');
+            const logoutLink = document.getElementById('logout-link');
+
+            if (isLoggedIn) {
+                loginLink.style.display = 'none';
+                logoutLink.style.display = 'block';
+            } else {
+                loginLink.style.display = 'block';
+                logoutLink.style.display = 'none';
+            }
+        })();
+
+        function handleLogout(e) {
+            e.preventDefault();
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
+        }
+    </script>
+
+    <div id="toast"></div>
+
+</body>
+
+</html>

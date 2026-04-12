@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dhariya Couture Collections – Browse our full range of premium fashion.">
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>Collections – Dhariya Couture</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="collection.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h1 class="logo">DHARIYA COUTURE</h1>
+
+        <div class="navbar-links">
+            <a href="index.html">HOME</a>
+            <a href="collection.html">COLLECTIONS</a>
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html">CONTACT</a>
+
+            <!-- PROFILE DROPDOWN -->
+            <div class="profile-menu">
+                <i class="fa-solid fa-circle-user fa-xl"></i>
+                <div class="dropdown">
+                    <a href="profile.html">My Account</a>
+                    <a href="orders.html">Orders</a>
+                    <a href="wishlist.html">Wishlist</a>
+                    <a href="login.html" id="login-link">Login</a>
+                    <a href="#" id="logout-link" onclick="handleLogout(event)">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <div class="cart"><a href="cart.html">🛒 <span id="cart-count">0</span></a></div>
+            <div class="wishlist"><a href="wishlist.html">♡ <span id="wishlist-count">0</span></a></div>
+            <i class="fa-solid fa-bars menu-toggle" onclick="openNav()"></i>
+        </div>
+    </nav>
+
+    <!-- OVERLAY -->
+    <div class="nav-overlay"></div>
+
+    <!-- SIDE NAV -->
+    <div class="side-navbar">
+        <i class="fa-solid fa-xmark close-btn" onclick="closeNav()"></i>
+        <a href="index.html">HOME</a>
+        <a href="collection.html">COLLECTIONS</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="cart.html">CART</a>
+        <a href="wishlist.html">WISHLIST</a>
+        <a href="profile.html">MY ACCOUNT</a>
+        <!-- Login/Logout toggled by JS -->
+        <a href="login.html" id="side-login-link">Login</a>
+        <a href="#" id="side-logout-link" onclick="handleLogout(event)">Logout</a>
+    </div>
+
+    <!-- PAGE HEADER -->
+    <div class="collection-header">
+        <h2>All Collections</h2>
+        <p>Discover your next favourite look</p>
+    </div>
+
+    <!-- SEARCH + FILTER BAR -->
+    <div class="collection-toolbar">
+        <div class="product-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="search" placeholder="Search products..." oninput="filterProducts()">
+        </div>
+
+        <div class="filter-group">
+            <select id="sort-select" title="Sort By" onchange="filterProducts()">
+                <option value="default">Sort By</option>
+                <option value="low-high">Price: Low to High</option>
+                <option value="high-low">Price: High to Low</option>
+                <option value="name">Name: A–Z</option>
+            </select>
+
+            <select id="category-select" title="Category" onchange="filterProducts()">
+                <option value="all">All Categories</option>
+                <option value="men-pants">Men's Pants</option>
+                <option value="men-shirts">Men's Shirts</option>
+                <option value="men-tshirts">Men's T-Shirts</option>
+                <option value="women-tops">Women's Tops</option>
+                <option value="women-lehangas">Women's Lehangas</option>
+                <option value="women-tshirts">Women's T-Shirts</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="collection-tabs">
+        <button class="gender-btn active" data-gender="all" type="button" onclick="setGenderFilter('all')">All</button>
+        <button class="gender-btn" data-gender="men" type="button" onclick="setGenderFilter('men')">Men</button>
+        <button class="gender-btn" data-gender="women" type="button" onclick="setGenderFilter('women')">Women</button>
+        <button class="gender-btn" data-gender="combo" type="button" onclick="setGenderFilter('combo')">Combo</button>
+    </div>
+
+    <!-- RESULTS COUNT -->
+    <div class="results-count" id="results-count"></div>
+
+    <!-- PRODUCTS GRID -->
+    <div class="products" id="product">
+
+        <div class="product-box" data-slug="men-cargo-pants" data-name="Men Cargo Pants" data-price="1299" data-gender="men" data-category="men-pants" onclick="viewProduct(event, 'men-cargo-pants')">
+            <img src="Image/darkblueTshirt.jpg" loading="lazy" alt="Men Cargo Pants">
+            <div class="product-box-info">
+                <h5 class="brand">DHARIYA MEN</h5>
+                <h4 class="name">Men Cargo Pants</h4>
+                <p class="price">₹1299</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCartBtn(this, 'Men Cargo Pants', 1299, 'Image/darkblueTshirt.jpg')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="men-linen-shirt" data-name="Men Linen Shirt" data-price="1499" data-gender="men" data-category="men-shirts" onclick="viewProduct(event, 'men-linen-shirt')">
+            <img src="Image/darkgreyShirt.jpg" loading="lazy" alt="Men Linen Shirt">
+            <div class="product-box-info">
+                <h5 class="brand">DHARIYA MEN</h5>
+                <h4 class="name">Men Linen Shirt</h4>
+                <p class="price">₹1499</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCartBtn(this, 'Men Linen Shirt', 1499, 'Image/darkgreyShirt.jpg')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="men-grey-tshirt" data-name="Men Grey T-Shirt" data-price="999" data-gender="men" data-category="men-tshirts" onclick="viewProduct(event, 'men-grey-tshirt')">
+            <img src="Image/greyTshirt.jpg" loading="lazy" alt="Men Grey T-Shirt">
+            <div class="product-box-info">
+                <h5 class="brand">DHARIYA MEN</h5>
+                <h4 class="name">Men Grey T-Shirt</h4>
+                <p class="price">₹999</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCartBtn(this, 'Men Grey T-Shirt', 999, 'Image/greyTshirt.jpg')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="women-printed-top" data-name="Women Printed Top" data-price="1099" data-gender="women" data-category="women-tops" onclick="viewProduct(event, 'women-printed-top')">
+            <img src="Image/White.jpeg" loading="lazy" alt="Women Printed Top">
+            <div class="product-box-info">
+                <h5 class="brand">DHARIYA WOMEN</h5>
+                <h4 class="name">Women Printed Top</h4>
+                <p class="price">₹1099</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCartBtn(this, 'Women Printed Top', 1099, 'Image/White.jpeg')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="women-maroon-lehenga" data-name="Women Maroon Lehenga" data-price="2799" data-gender="women" data-category="women-lehangas" onclick="viewProduct(event, 'women-maroon-lehenga')">
+            <img src="Image/Maroon.jpeg" loading="lazy" alt="Women Maroon Lehenga">
+            <div class="product-box-info">
+                <h5 class="brand">DHARIYA WOMEN</h5>
+                <h4 class="name">Women Maroon Lehenga</h4>
+                <p class="price">₹2799</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCartBtn(this, 'Women Maroon Lehenga', 2799, 'Image/Maroon.jpeg')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="women-black-tshirt" data-name="Women Black T-Shirt" data-price="1299" data-gender="women" data-category="women-tshirts" onclick="viewProduct(event, 'women-black-tshirt')">
+            <img src="Image/blackTshirt.jpg" loading="lazy" alt="Women Black T-Shirt">
+            <div class="product-box-info">
+                <h5 class="brand">DHARIYA WOMEN</h5>
+                <h4 class="name">Women Black T-Shirt</h4>
+                <p class="price">₹1299</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCartBtn(this, 'Women Black T-Shirt', 1299, 'Image/blackTshirt.jpg')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="men-navy-tshirt" data-name="Men Navy T-Shirt" data-price="1299" data-gender="men" data-category="men-tshirts" onclick="viewProduct(event, 'men-navy-tshirt')">
+            <img src="Image/navyblueTshirt.jpeg" loading="lazy" alt="Men Navy T-Shirt">
+            <div class="product-box-info">
+                <h5 class="brand">DHARIYA MEN</h5>
+                <h4 class="name">Men Navy T-Shirt</h4>
+                <p class="price">₹1299</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCartBtn(this, 'Men Navy T-Shirt', 1299, 'Image/navyblueTshirt.jpeg')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="men-classic-shirt" data-name="Men Classic Shirt" data-price="1399" data-gender="men" data-category="men-shirts" onclick="viewProduct(event, 'men-classic-shirt')">
+            <img src="Image/darkgreyShirt.jpg" loading="lazy" alt="Men Classic Shirt">
+            <div class="product-box-info">
+                <h5 class="brand">DHARIYA MEN</h5>
+                <h4 class="name">Men Classic Shirt</h4>
+                <p class="price">₹1399</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCartBtn(this, 'Men Classic Shirt', 1399, 'Image/darkgreyShirt.jpg')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="women-ivory-lehenga" data-name="Women Ivory Lehenga" data-price="2899" data-gender="women" data-category="women-lehangas" onclick="viewProduct(event, 'women-ivory-lehenga')">
+            <img src="Image/dress2.jpeg" loading="lazy" alt="Women Ivory Lehenga">
+            <div class="product-box-info">
+                <h5 class="brand">DHARIYA WOMEN</h5>
+                <h4 class="name">Women Ivory Lehenga</h4>
+                <p class="price">₹2899</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCartBtn(this, 'Women Ivory Lehenga', 2899, 'Image/dress2.jpeg')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="women-red-tshirt" data-name="Women Red T-Shirt" data-price="1299" data-gender="women" data-category="women-tshirts" onclick="viewProduct(event, 'women-red-tshirt')">
+            <img src="Image/redTshirt.jpg" loading="lazy" alt="Women Red T-Shirt">
+            <div class="product-box-info">
+                <h5 class="brand">DHARIYA WOMEN</h5>
+                <h4 class="name">Women Red T-Shirt</h4>
+                <p class="price">₹1299</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCartBtn(this, 'Women Red T-Shirt', 1299, 'Image/redTshirt.jpg')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="women-white-tshirt" data-name="Women White T-Shirt" data-price="1299" data-gender="women" data-category="women-tshirts" onclick="viewProduct(event, 'women-white-tshirt')">
+            <img src="Image/whiteTshirt.jpg" loading="lazy" alt="Women White T-Shirt">
+            <div class="product-box-info">
+                <h5 class="brand">DHARIYA WOMEN</h5>
+                <h4 class="name">Women White T-Shirt</h4>
+                <p class="price">₹1299</p>
+                <button class="cartBtn" onclick="event.stopPropagation(); addToCartBtn(this, 'Women White T-Shirt', 1299, 'Image/whiteTshirt.jpg')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- MEN'S COMBO STYLES -->
+        <div class="product-box" data-slug="combo-summer-capsule" data-name="Men's Summer Capsule Wardrobe" data-price="0" data-gender="combo" data-category="combo" onclick="viewProduct(event, 'combo-summer-capsule')">
+            <img src="combo/Men's Summer Capsule Wardrobe + 20 Outfit Ideas _ Erika Marie.jpeg" loading="lazy" alt="Men's Summer Capsule Wardrobe">
+            <div class="product-box-info">
+                <h5 class="brand">COMBO STYLE</h5>
+                <h4 class="name">Summer Capsule</h4>
+                <p class="price">₹2999</p>
+                <button class="cartBtn" onclick="viewProduct(event, 'combo-summer-capsule')">View Style</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="combo-old-money" data-name="Old Money Outfit Men" data-price="0" data-gender="combo" data-category="combo" onclick="viewProduct(event, 'combo-old-money')">
+            <img src="combo/Old Money Outfit, Men!!.jpeg" loading="lazy" alt="Old Money Outfit">
+            <div class="product-box-info">
+                <h5 class="brand">COMBO STYLE</h5>
+                <h4 class="name">Old Money Style</h4>
+                <p class="price">₹2999</p>
+                <button class="cartBtn" onclick="viewProduct(event, 'combo-old-money')">View Style</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="combo-premium-simple" data-name="Premium Simple Style" data-price="0" data-gender="combo" data-category="combo" onclick="viewProduct(event, 'combo-premium-simple')">
+            <img src="combo/Premium simple style.jpeg" loading="lazy" alt="Premium Simple Style">
+            <div class="product-box-info">
+                <h5 class="brand">COMBO STYLE</h5>
+                <h4 class="name">Premium Simple</h4>
+                <p class="price">₹2999</p>
+                <button class="cartBtn" onclick="viewProduct(event, 'combo-premium-simple')">View Style</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="combo-classic-look" data-name="Men Combo Classic Look" data-price="0" data-gender="combo" data-category="combo" onclick="viewProduct(event, 'combo-classic-look')">
+            <img src="combo/download (12).jpeg" loading="lazy" alt="Classic Look">
+            <div class="product-box-info">
+                <h5 class="brand">COMBO STYLE</h5>
+                <h4 class="name">Classic Look</h4>
+                <p class="price">₹2999</p>
+                <button class="cartBtn" onclick="viewProduct(event, 'combo-classic-look')">View Style</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="combo-casual-vibes" data-name="Men Combo Casual Vibes" data-price="0" data-gender="combo" data-category="combo" onclick="viewProduct(event, 'combo-casual-vibes')">
+            <img src="combo/download (13).jpeg" loading="lazy" alt="Casual Vibes">
+            <div class="product-box-info">
+                <h5 class="brand">COMBO STYLE</h5>
+                <h4 class="name">Casual Vibes</h4>
+                <p class="price">₹2999</p>
+                <button class="cartBtn" onclick="viewProduct(event, 'combo-casual-vibes')">View Style</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="combo-street-style" data-name="Men Combo Street Style" data-price="0" data-gender="combo" data-category="combo" onclick="viewProduct(event, 'combo-street-style')">
+            <img src="combo/download (14).jpeg" loading="lazy" alt="Street Style">
+            <div class="product-box-info">
+                <h5 class="brand">COMBO STYLE</h5>
+                <h4 class="name">Street Style</h4>
+                <p class="price">₹2999</p>
+                <button class="cartBtn" onclick="viewProduct(event, 'combo-street-style')">View Style</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="combo-evening-wear" data-name="Men Combo Evening Wear" data-price="0" data-gender="combo" data-category="combo" onclick="viewProduct(event, 'combo-evening-wear')">
+            <img src="combo/download (15).jpeg" loading="lazy" alt="Evening Wear">
+            <div class="product-box-info">
+                <h5 class="brand">COMBO STYLE</h5>
+                <h4 class="name">Evening Wear</h4>
+                <p class="price">₹2999</p>
+                <button class="cartBtn" onclick="viewProduct(event, 'combo-evening-wear')">View Style</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="combo-smart-casual" data-name="Men Combo Smart Casual" data-price="0" data-gender="combo" data-category="combo" onclick="viewProduct(event, 'combo-smart-casual')">
+            <img src="combo/download (16).jpeg" loading="lazy" alt="Smart Casual">
+            <div class="product-box-info">
+                <h5 class="brand">COMBO STYLE</h5>
+                <h4 class="name">Smart Casual</h4>
+                <p class="price">₹2999</p>
+                <button class="cartBtn" onclick="viewProduct(event, 'combo-smart-casual')">View Style</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="combo-business-look" data-name="Men Combo Business Look" data-price="0" data-gender="combo" data-category="combo" onclick="viewProduct(event, 'combo-business-look')">
+            <img src="combo/download (17).jpeg" loading="lazy" alt="Business Look">
+            <div class="product-box-info">
+                <h5 class="brand">COMBO STYLE</h5>
+                <h4 class="name">Business Look</h4>
+                <p class="price">₹2999</p>
+                <button class="cartBtn" onclick="viewProduct(event, 'combo-business-look')">View Style</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="combo-trendy-mix" data-name="Men Combo Trendy Mix" data-price="0" data-gender="combo" data-category="combo" onclick="viewProduct(event, 'combo-trendy-mix')">
+            <img src="combo/download (18).jpeg" loading="lazy" alt="Trendy Mix">
+            <div class="product-box-info">
+                <h5 class="brand">COMBO STYLE</h5>
+                <h4 class="name">Trendy Mix</h4>
+                <p class="price">₹3999</p>
+                <button class="cartBtn" onclick="viewProduct(event, 'combo-trendy-mix')">View Style</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="combo-modern-fit" data-name="Men Combo Modern Fit" data-price="0" data-gender="combo" data-category="combo" onclick="viewProduct(event, 'combo-modern-fit')">
+            <img src="combo/download (19).jpeg" loading="lazy" alt="Modern Fit">
+            <div class="product-box-info">
+                <h5 class="brand">COMBO STYLE</h5>
+                <h4 class="name">Modern Fit</h4>
+                <p class="price">₹2999</p>
+                <button class="cartBtn" onclick="viewProduct(event, 'combo-modern-fit')">View Style</button>
+            </div>
+        </div>
+
+        <div class="product-box" data-slug="combo-bold-statement" data-name="Men Combo Bold Statement" data-price="0" data-gender="combo" data-category="combo" onclick="viewProduct(event, 'combo-bold-statement')">
+            <img src="combo/download (20).jpeg" loading="lazy" alt="Bold Statement">
+            <div class="product-box-info">
+                <h5 class="brand">COMBO STYLE</h5>
+                <h4 class="name">Bold Statement</h4>
+                <p class="price">₹2999</p>
+                <button class="cartBtn" onclick="viewProduct(event, 'combo-bold-statement')">View Style</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- NO RESULTS -->
+    <div class="no-results" id="no-results">
+        <i class="fa-solid fa-face-sad-tear"></i>
+        <p>No products found. Try a different search.</p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <h3>DHARIYA COUTURE</h3>
+        <p>Trendy | Elegant | Affordable</p>
+        <p>&copy; 2023 DHARIYA COUTURE. All rights reserved.</p>
+        <p>It is a Demo Website to Showcase my Skills by <a href="https://www.linkedin.com/in/mohamed-dhakeer/" target="_blank">Mohamed Dhakeer N</a></p>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="index.js"></script>
+    <script src="product.js"></script>
+    <script src="collection.js"></script>
+
+     <script>
+        // Login / Logout toggle
+        (function () {
+            const user = getCurrentUser();
+            const loginLink = document.getElementById('login-link');
+            const logoutLink = document.getElementById('logout-link');
+            const sideLoginLink = document.getElementById('side-login-link');
+            const sideLogoutLink = document.getElementById('side-logout-link');
+
+            if (user) {
+                if (loginLink) loginLink.style.display = 'none';
+                if (logoutLink) logoutLink.style.display = 'block';
+                if (sideLoginLink) sideLoginLink.style.display = 'none';
+                if (sideLogoutLink) sideLogoutLink.style.display = 'block';
+            } else {
+                if (loginLink) loginLink.style.display = 'block';
+                if (logoutLink) logoutLink.style.display = 'none';
+                if (sideLoginLink) sideLoginLink.style.display = 'block';
+                if (sideLogoutLink) sideLogoutLink.style.display = 'none';
+            }
+        })();
+    </script>
+
+</body>
+</html>

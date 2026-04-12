@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Login to your Dhariya Couture account to access your profile, orders, and wishlist. Enjoy seamless shopping with us!">
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>Login – Dhariya Couture</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FIX: renamed from login&signup.css → login.css (& is invalid in some servers) -->
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+        <div class="login-box">
+
+            <div class="login-logo">DHARIYA COUTURE</div>
+            <h2>Welcome Back 👋</h2>
+            <p class="login-sub">Login to your account</p>
+
+            <input type="text" id="username" placeholder="Username" autocomplete="username">
+            <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+
+            <button class="login-btn" onclick="login()">Login</button>
+
+            <p id="login-msg"></p>
+
+            <p class="signup-prompt">
+                Don't have an account?
+                <a href="signup.html" class="signup-link">Sign up</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="JS/auth.js"></script>
+</body>
+
+</html>

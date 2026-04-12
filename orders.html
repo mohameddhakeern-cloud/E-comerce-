@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View your order history at Dhariya Couture.">
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>Orders – Dhariya Couture</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="profile.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h1 class="logo">DHARIYA COUTURE</h1>
+
+        <div class="navbar-links">
+            <a href="index.html">HOME</a>
+            <a href="collection.html">COLLECTIONS</a>
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html">CONTACT</a>
+
+            <!-- PROFILE DROPDOWN -->
+            <div class="profile-menu">
+                <i class="fa-solid fa-circle-user fa-xl"></i>
+
+                <div class="dropdown">
+                    <a href="profile.html">My Account</a>
+                    <a href="orders.html">Orders</a>
+                    <a href="wishlist.html">Wishlist</a>
+                    <a href="login.html" id="login-link">Login</a>
+                    <a href="#" id="logout-link" onclick="handleLogout(event)">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <div class="cart"><a href="cart.html">🛒 <span id="cart-count">0</span></a></div>
+            <i class="fa-solid fa-bars menu-toggle" onclick="openNav()"></i>
+        </div>
+    </nav>
+
+  <!-- SIDE NAV -->
+    <div class="side-navbar">
+        <i class="fa-solid fa-xmark close-btn" onclick="closeNav()"></i>
+        <a href="index.html">HOME</a>
+        <a href="collection.html">COLLECTIONS</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="cart.html">CART</a>
+        <a href="wishlist.html">WISHLIST</a>
+        <a href="profile.html">MY ACCOUNT</a>
+        <!-- Login/Logout toggled by JS -->
+        <a href="login.html" id="side-login-link">Login</a>
+        <a href="#" id="side-logout-link" onclick="handleLogout(event)">Logout</a>
+    </div>
+
+    <!-- OVERLAY -->
+    <div class="nav-overlay" onclick="closeNav()"></div>
+
+    <!-- OFFER -->
+    <div class="offer-banner">
+        <div class="offer-text">
+            🔥 Flat 30% OFF on New Arrivals &nbsp;&nbsp;🔥 Flat 30% OFF on New Arrivals &nbsp;&nbsp;🔥 Flat 30% OFF on New Arrivals
+        </div>
+    </div>
+
+    <!-- ORDERS MAIN -->
+    <main class="profile-main">
+
+        <!-- SIDEBAR -->
+        <aside class="profile-sidebar">
+            <ul class="tab-list">
+                <li class="tab-item" data-tab="info"><i class="fa-regular fa-id-card"></i> <a href="profile.html">Personal Info</a></li>
+                <li class="tab-item active" data-tab="orders"><i class="fa-solid fa-box-open"></i> My Orders</li>
+                <li class="tab-item" data-tab="addresses"><i class="fa-solid fa-location-dot"></i> <a>Addresses</a></li>
+                <li class="tab-item logout" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> <a href="#" onclick="handleLogout(event)">Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- CONTENT -->
+        <section class="profile-content">
+
+            <!-- ORDERS -->
+            <div class="tab-panel active" id="tab-orders">
+                <div class="panel-header">
+                    <h2 class="section-heading">My Orders</h2>
+                </div>
+
+                <div id="orders-container">
+                    <!-- Orders will be rendered here -->
+                </div>
+
+                <div id="empty-orders">
+                    <i class="fa-solid fa-box-open"></i>
+                    <h3>No Orders Yet</h3>
+                    <p>You haven't placed any orders yet. Start shopping!</p>
+                    <a href="collection.html" class="btn-edit">Browse Collections</a>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <h3>DHARIYA COUTURE</h3>
+        <p>Trendy | Elegant | Affordable</p>
+        <p>&copy; 2023 DHARIYA COUTURE. All rights reserved.</p>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="index.js"></script>
+    <script src="orders.js"></script>
+
+    <!-- LOGIN TOGGLE -->
+    <script>
+        (function () {
+            const user = getCurrentUser();
+            const loginLink = document.getElementById('login-link');
+            const logoutLink = document.getElementById('logout-link');
+            const sideLoginLink = document.getElementById('side-login-link');
+            const sideLogoutLink = document.getElementById('side-logout-link');
+
+            if (user) {
+                if (loginLink) loginLink.style.display = 'none';
+                if (logoutLink) logoutLink.style.display = 'block';
+                if (sideLoginLink) sideLoginLink.style.display = 'none';
+                if (sideLogoutLink) sideLogoutLink.style.display = 'block';
+            } else {
+                if (loginLink) loginLink.style.display = 'block';
+                if (logoutLink) logoutLink.style.display = 'none';
+                if (sideLoginLink) sideLoginLink.style.display = 'block';
+                if (sideLogoutLink) sideLogoutLink.style.display = 'none';
+            }
+        })();
+    </script>
+
+</body>
+
+</html>

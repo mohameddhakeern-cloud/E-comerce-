@@ -1,0 +1,629 @@
+/* ===============================
+   DHARIYA COUTURE - PROFILE CSS
+   Gold Luxury Theme
+================================ */
+
+/* ── TOKENS ── */
+:root {
+    --gold:          #c9a96e;
+    --gold-dark:     #a8834a;
+    --gold-light:    #f7f0e6;
+    --gold-shine:    #e8d5a3;
+    --black:         #111111;
+    --charcoal:      #1e1e1e;
+    --mid:           #535766;
+    --muted:         #94969f;
+    --border:        #e8e0d5;
+    --surface:       #f8f5f0;
+    --white:         #ffffff;
+    --nav-height:    64px;
+    --font:          'Poppins', sans-serif;
+    --radius-sm:     3px;
+    --radius-md:     6px;
+    --shadow-card:   0 2px 16px rgba(0,0,0,0.08);
+    --shadow-gold:   0 4px 18px rgba(201,169,110,0.30);
+    --transition:    0.22s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background:var(--white);
+  color: var(--black);
+}
+
+/* ================= NAVBAR FIX ================= */
+.navbar {
+  background:var(--white);
+  color: var(--black);
+}
+
+.navbar-links a {
+  color: var(--black);
+}
+
+.navbar-links a:hover {
+  color: #D4AF37;
+}
+
+/* ================= PROFILE BANNER ================= */
+.profile-banner {
+  background: var(--gold-light);
+  padding: 60px 10%;
+  position: relative;
+}
+
+/* ================================
+   PROFILE AVATAR STYLING
+================================ */
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* perfect circle */
+    object-fit: cover; /* prevents stretch */
+    object-position: center; /* centers face */
+
+    border: 3px solid #d4af37; /* gold border */
+    padding: 3px;
+    background: #fff;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+    transition: all 0.3s ease;
+}
+
+/* Hover effect (premium feel) */
+.profile-avatar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(212, 175, 55, 0.4);
+}
+
+
+/* ================================
+   AVATAR CONTAINER (CENTER FIX)
+================================ */
+
+.profile-avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+/* ================================
+   DEFAULT IMAGE STYLE (OPTIONAL)
+================================ */
+
+.profile-avatar.de {
+    object-fit: contain; /* for icons/logo */
+    background-color: #f5f5f5;
+    padding: 15px;
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 3px solid #D4AF37;
+  object-fit: cover;
+}
+
+/* ================= USER INFO ================= */
+.banner-info h1 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.banner-info p {
+  color: #aaa;
+  margin: 5px 0 10px;
+}
+
+.badges-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 6px 12px;
+  border-radius: 20px;
+  background:var(--gold-shine);
+  color: var(--black);
+  font-size: 12px;
+}
+
+.tag.gold {
+  background: #D4AF37;
+  color: #000;
+  font-weight: 600;
+}
+
+/* ================= MAIN LAYOUT ================= */
+.profile-main {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 30px;
+  padding: 40px 10%;
+}
+
+/* ================= SIDEBAR ================= */
+.profile-sidebar {
+  background:var(--gold-light);
+  color: #000;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.tab-list {
+  list-style: none;
+}
+
+.tab-item {
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  color: #ccc;
+  transition: 0.3s;
+}
+
+.tab-item:hover {
+  background: #222;
+  color: #D4AF37;
+}
+
+.tab-item.active {
+  background: #D4AF37;
+  color: #000;
+  font-weight: 600;
+}
+
+.tab-item.logout {
+  margin-top: 10px;
+  color: #ff4d4d;
+}
+
+/* ================= CONTENT ================= */
+.profile-content {
+  background: var(--gold-light);
+  color:var(--black);
+  padding: 30px;
+  border-radius: 10px;
+}
+.profile-content h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--black);
+}
+
+.profileForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profileForm .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  color: var(--black);
+}
+
+/* ================= HEADER ================= */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.section-heading {
+  font-size: 22px;
+  color: #D4AF37;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ================= FORM ================= */
+.info-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.form-row input {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background: var(--white);
+  color: #3f3e3e;
+}
+
+.form-row input:disabled {
+  opacity: 0.6;
+}
+
+/* ================= BUTTONS ================= */
+.primary-btn {
+  background: #D4AF37;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.primary-btn:hover {
+  background: #c59d2f;
+}
+
+.btn-edit {
+  background: #D4AF37;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.btn-edit:hover {
+  background: #c59d2f;
+}
+
+.cartBtn {
+  background: transparent;
+  border: 1px solid #555;
+  color: #ccc;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* ================= EMPTY ORDERS ================= */
+#empty-orders {
+  text-align: center;
+  padding: 50px;
+  display: none;
+}
+
+#empty-orders i {
+  font-size: 48px;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+#empty-orders .btn-edit {
+  display: inline-block;
+  margin-top: 20px;
+}
+
+/* ================= ORDER CARDS ================= */
+.order-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-card);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+
+.order-header h3 {
+  margin: 0;
+  color: var(--black);
+}
+
+.order-date {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.order-items {
+  margin-bottom: 15px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+}
+
+.order-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-right: 15px;
+}
+
+.item-details h4 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+}
+
+.item-details p {
+  margin: 2px 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.order-total {
+  text-align: right;
+  font-size: 18px;
+  color: var(--gold);
+}
+
+/* =========================================
+   ORDERS PAGE
+   ========================================= */
+
+#orders-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.order-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+    padding: 18px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+}
+
+.order-header h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+}
+
+.order-date {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.order-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.order-item {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.order-item img {
+    width: 70px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+
+.item-details h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.item-details p {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.order-total {
+    margin-top: 12px;
+    text-align: right;
+    font-size: 14px;
+    color: var(--gold-dark);
+    font-weight: 700;
+}
+
+/* EMPTY STATE */
+#empty-orders {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+#empty-orders i {
+    font-size: 50px;
+    color: var(--border);
+    margin-bottom: 14px;
+}
+
+#empty-orders h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+#empty-orders p {
+    color: var(--muted);
+    margin-bottom: 16px;
+}
+
+.order-status {
+    font-size: 11px;
+    background: #e6f7ee;
+    color: #14958f;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.order-actions {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.btn-reorder {
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    padding: 6px 14px;
+    font-size: 11px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+}
+
+/* ================= ORDERS CONTAINER ================= */
+#orders-container {
+  margin-top: 20px;
+}
+
+.cartBtn:hover {
+  border-color: #D4AF37;
+  color: #D4AF37;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* ================= ADDRESSES STYLES ================= */
+
+#addresses-list {
+  margin-top: 20px;
+}
+
+.address-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.address-info h4 {
+  margin: 0 0 10px 0;
+  color: var(--black);
+  font-size: 18px;
+}
+
+.address-info p {
+  margin: 5px 0;
+  color: var(--mid);
+  line-height: 1.5;
+}
+
+.address-actions {
+  display: flex;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.address-actions .btn-edit,
+.address-actions .btn-delete {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.address-actions .btn-edit {
+  background: var(--gold);
+  color: var(--black);
+}
+
+.address-actions .btn-edit:hover {
+  background: var(--gold-dark);
+}
+
+.address-actions .btn-delete {
+  background: #dc3545;
+  color: var(--white);
+}
+
+.address-actions .btn-delete:hover {
+  background: #c82333;
+}
+
+.no-addresses {
+  text-align: center;
+  padding: 40px;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.no-addresses a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.no-addresses a:hover {
+  text-decoration: underline;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width: 768px) {
+
+  .profile-main {
+    grid-template-columns: 1fr;
+  }
+  
+
+  .banner-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}

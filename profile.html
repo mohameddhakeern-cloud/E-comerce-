@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage your profile, orders, and account settings at Dhariya Couture.">
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>Profile – Dhariya Couture</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="profile.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h1 class="logo">DHARIYA COUTURE</h1>
+
+        <div class="navbar-links">
+            <a href="index.html">HOME</a>
+            <a href="collection.html">COLLECTIONS</a>
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html">CONTACT</a>
+
+            <!-- PROFILE DROPDOWN -->
+            <div class="profile-menu">
+                <i class="fa-solid fa-circle-user fa-xl"></i>
+
+                <div class="dropdown">
+                    <a href="profile.html">My Account</a>
+                    <a href="orders.html">Orders</a>
+                    <a href="cart.html">Wishlist</a>
+                    <a href="login.html" id="login-link">Login</a>
+                    <a href="#" id="logout-link" onclick="handleLogout(event)">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <div class="cart"><a href="cart.html">🛒 <span id="cart-count">0</span></a></div>
+            <i class="fa-solid fa-bars menu-toggle" onclick="openNav()"></i>
+        </div>
+    </nav>
+
+  <!-- SIDE NAV -->
+    <div class="side-navbar">
+        <i class="fa-solid fa-xmark close-btn" onclick="closeNav()"></i>
+        <a href="index.html">HOME</a>
+        <a href="collection.html">COLLECTIONS</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="cart.html">CART</a>
+        <a href="wishlist.html">WISHLIST</a>
+        <a href="profile.html">MY ACCOUNT</a>
+        <!-- Login/Logout toggled by JS -->
+        <a href="login.html" id="side-login-link">Login</a>
+        <a href="#" id="side-logout-link" onclick="handleLogout(event)">Logout</a>
+    </div>
+
+    <!-- OVERLAY -->
+    <div class="nav-overlay" onclick="closeNav()"></div>
+
+    <!-- OFFER -->
+    <div class="offer-banner">
+        <div class="offer-text">
+            🔥 Flat 30% OFF on New Arrivals &nbsp;&nbsp;🔥 Flat 30% OFF on New Arrivals &nbsp;&nbsp;🔥 Flat 30% OFF on New Arrivals
+        </div>
+    </div>
+
+    <!-- PROFILE HERO -->
+    <div class="profile-banner">
+        <div class="banner-overlay"></div>
+
+        <div class="banner-content">
+            <div class="profile-avatar-container">
+                <div class="profile-avatar">
+                    <img src="Image/profile default.jpeg" class="avatar" id="avatarImg" alt="User profile avatar" title="User profile avatar">
+                    <label class="avatar-edit" for="avatarInput"><i class="fa-solid fa-camera"></i></label>
+                    <input type="file" id="avatarInput" hidden>
+                </div>
+            </div>
+
+            <div class="banner-info">
+                <h1 id="displayName">Aishwarya Rajan</h1>
+                <p id="displayEmail">aishwarya@email.com</p>
+
+                <div class="badges-row">
+                    <span class="tag gold"><i class="fa-solid fa-crown"></i> Gold Member</span>
+                    <span class="tag"><i class="fa-solid fa-box"></i> 12 Orders</span>
+                    <span class="tag"><i class="fa-regular fa-heart"></i> 8 Wishlist</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROFILE MAIN -->
+    <main class="profile-main">
+
+        <!-- SIDEBAR -->
+        <aside class="profile-sidebar">
+            <ul class="tab-list">
+                <li class="tab-item active" data-tab="info"><i class="fa-regular fa-id-card"></i> Personal Info</li>
+                <li class="tab-item" data-tab="orders"><i class="fa-solid fa-box-open"></i> <a href="orders.html">My Orders</a></li>
+                <li class="tab-item" data-tab="addresses"><i class="fa-solid fa-location-dot"></i> Addresses</li>
+                <li class="tab-item logout" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+            </ul>
+        </aside>
+
+        <!-- CONTENT -->
+        <section class="profile-content">
+
+            <!-- INFO -->
+            <div class="tab-panel active" id="tab-info">
+                <div class="panel-header">
+                    <h2 class="section-heading">Personal Information</h2>
+                    <button class="btn-edit" id="editToggle">Edit</button>
+                </div>
+
+                <form class="info-form" id="profileForm">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" value="Aishwarya" disabled id="firstName" placeholder="First Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" value="Rajan" disabled id="lastName" placeholder="Last Name">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" value="aishwarya@email.com" disabled id="email" placeholder="Email Address">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" value="+91 98765 43210" disabled id="phone" placeholder="Phone Number">
+                        </div>
+                    </div>
+
+                    <div class="form-actions" id="formActions" hidden>
+                        <button type="submit" class="primary-btn">Save Changes</button>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- ADDRESSES TAB -->
+            <div class="tab-panel" id="tab-addresses">
+                <div class="panel-header">
+                    <h2 class="section-heading">Saved Addresses</h2>
+                    <button class="btn-edit" onclick="window.location.href='checkout.html'">Add New Address</button>
+                </div>
+
+                <div id="addresses-list">
+                    <!-- Addresses will be loaded here -->
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <h3>DHARIYA COUTURE</h3>
+        <p>Trendy | Elegant | Affordable</p>
+        <p>&copy; 2023 DHARIYA COUTURE. All rights reserved.</p>
+        <p>It is a Demo Website to Showcase my Skills by <a href="https://www.linkedin.com/in/mohamed-dhakeer/" target="_blank">Mohamed Dhakeer N</a></p>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="profile.js"></script>
+
+    <!-- LOGIN TOGGLE -->
+    <script>
+        (function () {
+            const user = getCurrentUser();
+            const loginLink = document.getElementById('login-link');
+            const logoutLink = document.getElementById('logout-link');
+            const sideLoginLink = document.getElementById('side-login-link');
+            const sideLogoutLink = document.getElementById('side-logout-link');
+
+            if (user) {
+                if (loginLink) loginLink.style.display = 'none';
+                if (logoutLink) logoutLink.style.display = 'block';
+                if (sideLoginLink) sideLoginLink.style.display = 'none';
+                if (sideLogoutLink) sideLogoutLink.style.display = 'block';
+            } else {
+                if (loginLink) loginLink.style.display = 'block';
+                if (logoutLink) logoutLink.style.display = 'none';
+                if (sideLoginLink) sideLoginLink.style.display = 'block';
+                if (sideLogoutLink) sideLogoutLink.style.display = 'none';
+            }
+        })();
+    </script>
+
+    <script>
+        // Avatar upload preview
+        const avatarInput = document.getElementById('avatarInput');
+        const avatarImg = document.getElementById('avatarImg');
+
+        avatarInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    avatarImg.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+    <script>
+        // Cart count update (example)
+        function updateCartCount() {
+            const cartCount = localStorage.getItem('cartCount') || 0;
+            document.getElementById('cart-count').textContent = cartCount;
+        }
+
+        // Call this function on page load to set the initial cart count
+        updateCartCount();
+    </script>
+
+
+   <script src="index.js"></script>
+
+</body>
+
+</html>

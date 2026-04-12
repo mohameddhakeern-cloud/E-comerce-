@@ -1,0 +1,186 @@
+/* =========================================
+   DHARIYA COUTURE — login.css
+   Requires style.css loaded first
+   ========================================= */
+
+body {
+    background: url("Image/dresshang.jpg") center / cover no-repeat fixed;
+    min-height: 100vh;
+}
+
+/* ── RESET ── */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* OVERLAY */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(17, 15, 10, 0.62);
+    padding: 20px;
+}
+
+/* CARD */
+.login-box {
+    background: rgba(255, 248, 235, 0.10);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    padding: 46px 38px;
+    border-radius: var(--radius-md);
+    width: 100%;
+    max-width: 370px;
+    text-align: center;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.55), inset 0 1px 0 rgba(201,169,110,0.25);
+    color: white;
+    border: 1px solid rgba(201, 169, 110, 0.22);
+}
+
+/* GOLD TOP ACCENT LINE */
+.login-box::before {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 22px;
+    border-radius: 2px;
+}
+
+/* BRAND */
+.login-logo {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 18px;
+    text-transform: uppercase;
+}
+
+/* TITLE */
+.login-box h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+    color: var(--white);
+}
+
+.login-sub {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 28px;
+    letter-spacing: 0.04em;
+}
+
+/* INPUTS */
+.login-box input {
+    width: 100%;
+    padding: 12px 14px;
+    margin: 7px 0;
+    border: 1px solid rgba(201, 169, 110, 0.25);
+    border-radius: var(--radius-sm);
+    outline: none;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    font-family: var(--font);
+    font-size: 13px;
+    transition: border-color var(--transition), background var(--transition);
+}
+
+.login-box input:focus {
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.13);
+}
+
+.login-box input::placeholder {
+    color: rgba(255, 255, 255, 0.40);
+}
+
+/* BUTTON */
+.login-btn {
+    width: 100%;
+    padding: 13px;
+    background: var(--gold);
+    border: none;
+    color: var(--white);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    margin-top: 18px;
+    font-family: var(--font);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+    box-shadow: var(--shadow-gold);
+}
+
+.login-btn:hover {
+    background: var(--gold-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201,169,110,0.45);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* MESSAGE */
+#login-msg {
+    margin-top: 12px;
+    font-size: 12px;
+    min-height: 20px;
+    color: var(--gold-shine);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+}
+
+/* DIVIDER */
+.login-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 22px 0 4px;
+    color: rgba(255,255,255,0.25);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+}
+.login-divider::before,
+.login-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(201,169,110,0.18);
+}
+
+/* SIGNUP PROMPT */
+.signup-prompt {
+    margin-top: 20px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.signup-link {
+    color: var(--gold);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color var(--transition);
+    letter-spacing: 0.04em;
+}
+
+.signup-link:hover {
+    color: var(--gold-shine);
+    text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 400px) {
+    .login-box { padding: 34px 22px; }
+}
