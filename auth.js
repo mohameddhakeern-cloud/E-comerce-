@@ -1,12 +1,24 @@
 // =========================================
-//   DHARIYA COUTURE — AUTH (FINAL VERSION)
+//   DHARIYA COUTURE — AUTH (FIXED VERSION)
 // =========================================
+
+
+// =========================================
+//   PASSWORD HASHING (SHA-256 via Web Crypto)
+// =========================================
+async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+}
 
 
 // =========================================
 //   LOGIN
 // =========================================
-function login() {
+async function login() {
 
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value;
@@ -19,20 +31,54 @@ function login() {
 
     const users = JSON.parse(localStorage.getItem("dc_users")) || [];
 
+    // FIX #1: Compare hashed password
+    const hashedPassword = await hashPassword(password);
     const user = users.find(
-        u => u.username === username && u.password === password
+        u => u.username === username && u.password === hashedPassword
     );
 
     if (user) {
 
-        // ✅ store full user (IMPORTANT)
+        // FIX #2: Merge guest cart & wishlist into user account on login
+        const guestCart = JSON.parse(localStorage.getItem("guest_cart")) || [];
+        const guestWishlist = JSON.parse(localStorage.getItem("guest_wishlist")) || [];
+
+        if (guestCart.length > 0) {
+            // Merge: avoid duplicates by productId
+            const mergedCart = [...user.cart];
+            guestCart.forEach(guestItem => {
+                const existing = mergedCart.find(i => i.productId === guestItem.productId);
+                if (existing) {
+                    existing.quantity = (existing.quantity || 1) + (guestItem.quantity || 1);
+                } else {
+                    mergedCart.push(guestItem);
+                }
+            });
+            user.cart = mergedCart;
+        }
+
+        if (guestWishlist.length > 0) {
+            const mergedWishlist = [...new Set([...user.wishlist, ...guestWishlist])];
+            user.wishlist = mergedWishlist;
+        }
+
+        // Clear guest data after merge
+        localStorage.removeItem("guest_cart");
+        localStorage.removeItem("guest_wishlist");
+
+        // Update merged user back to storage
+        let allUsers = JSON.parse(localStorage.getItem("dc_users")) || [];
+        allUsers = allUsers.map(u => u.id === user.id ? user : u);
+        localStorage.setItem("dc_users", JSON.stringify(allUsers));
+
+        // Store session
         localStorage.setItem("dc_current_user", JSON.stringify(user));
         localStorage.setItem("isLoggedIn", "true");
 
         showMsg(msgEl, "Login successful! Redirecting... ✅", "success");
 
         setTimeout(() => {
-            window.location.href = "profile.html"; // go to profile directly
+            window.location.href = "profile.html";
         }, 1000);
 
     } else {
@@ -44,7 +90,7 @@ function login() {
 // =========================================
 //   SIGNUP
 // =========================================
-function signup() {
+async function signup() {
 
     const firstName = document.getElementById("firstName").value.trim();
     const lastName = document.getElementById("lastName").value.trim();
@@ -77,19 +123,28 @@ function signup() {
 
     let users = JSON.parse(localStorage.getItem("dc_users")) || [];
 
-    const exists = users.find(u => u.username === username);
-
-    if (exists) {
+    // FIX #3: Check both username AND email for duplicates
+    const usernameTaken = users.find(u => u.username === username);
+    if (usernameTaken) {
         showMsg(msgEl, "Username already taken ❌", "error");
         return;
     }
 
-    // ✅ CREATE FULL USER PROFILE
+    const emailTaken = users.find(u => u.email === email);
+    if (emailTaken) {
+        showMsg(msgEl, "An account with this email already exists ❌", "error");
+        return;
+    }
+
+    // FIX #1: Hash password before storing
+    const hashedPassword = await hashPassword(password);
+
+    // CREATE FULL USER PROFILE
     const newUser = {
         id: Date.now(),
         username,
         email,
-        password,
+        password: hashedPassword,  // ✅ hashed, never plain text
 
         // Profile fields
         firstName,
@@ -118,30 +173,42 @@ function signup() {
 // =========================================
 //   GET CURRENT USER
 // =========================================
+// FIX #4: Wrapped in try/catch to prevent crash on corrupted JSON
 function getCurrentUser() {
-    return JSON.parse(localStorage.getItem("dc_current_user"));
+    try {
+        return JSON.parse(localStorage.getItem("dc_current_user")) || null;
+    } catch (e) {
+        console.error("Failed to parse current user from localStorage:", e);
+        localStorage.removeItem("dc_current_user"); // clean up bad data
+        return null;
+    }
 }
 
 
 // =========================================
-//   UPDATE USER (VERY IMPORTANT)
+//   UPDATE USER
 // =========================================
 function updateCurrentUser(updatedData) {
 
-    let users = JSON.parse(localStorage.getItem("dc_users")) || [];
-    let currentUser = getCurrentUser();
+    let users;
+    try {
+        users = JSON.parse(localStorage.getItem("dc_users")) || [];
+    } catch {
+        users = [];
+    }
 
+    let currentUser = getCurrentUser();
     if (!currentUser) return;
 
-    // merge new data
+    // Merge new data
     currentUser = { ...currentUser, ...updatedData };
 
-    // update in users array
+    // Update in users array
     users = users.map(u =>
         u.id === currentUser.id ? currentUser : u
     );
 
-    // save
+    // Save
     localStorage.setItem("dc_users", JSON.stringify(users));
     localStorage.setItem("dc_current_user", JSON.stringify(currentUser));
 }
@@ -153,68 +220,72 @@ function updateCurrentUser(updatedData) {
 function handleLogout(e) {
     if (e) e.preventDefault();
 
-    // Show confirmation dialog
-    if (!confirm('Are you sure you want to logout?')) {
-        return;
-    }
+    if (!confirm("Are you sure you want to logout?")) return;
 
-    // Clear all session data
+    // Clear session data
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("dc_current_user");
     localStorage.removeItem("currentUser");
 
-    // Clear any temporary cart/wishlist data if not saved to user profile
-    // (In a real app, cart/wishlist would be saved to user profile)
+    // FIX #5: Show toast THEN redirect — toast is shown before page unloads
+    showToast("Logged out successfully. See you soon!", "success");
 
-    // Show logout message
-    showToast('Logged out successfully. See you soon!', 'success');
-
-    // Redirect to login page after a short delay
     setTimeout(() => {
         window.location.href = "login.html";
-    }, 1000);
+    }, 1500); // slightly longer so toast is visible
 }
 
 
 // =========================================
 //   HELPERS
 // =========================================
+
+// FIX #6: showMsg now auto-clears after 4 seconds
 function showMsg(el, message, type) {
     if (!el) return;
     el.textContent = message;
     el.style.color = type === "success" ? "#90ee90" : "#ffcccc";
+
+    // Auto-clear after 4s
+    clearTimeout(el._msgTimer);
+    el._msgTimer = setTimeout(() => {
+        el.textContent = "";
+    }, 4000);
 }
+
 
 // =========================================
 //   TOAST NOTIFICATION
 // =========================================
-function showToast(message, type = 'info') {
-    // Remove existing toast if any
+function showToast(message, type = "info") {
     const existing = document.getElementById("dc-toast");
     if (existing) existing.remove();
 
     const toast = document.createElement("div");
     toast.id = "dc-toast";
     toast.innerText = message;
-    toast.className = type === 'success' ? 'success-toast' : type === 'error' ? 'error-toast' : '';
 
-    // Inject keyframe if not already present
-    if (!document.getElementById("toast-style")) {
-        const style = document.createElement("style");
-        style.id = "toast-style";
-        style.textContent = `
-            @keyframes toastIn {
-                from { opacity: 0; transform: translateX(-50%) translateY(12px); }
-                to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-            }
-        `;
-        document.head.appendChild(style);
-    }
+    // Inline styles so toast works on any page without extra CSS
+    Object.assign(toast.style, {
+        position: "fixed",
+        bottom: "24px",
+        left: "50%",
+        transform: "translateX(-50%)",
+        padding: "12px 24px",
+        borderRadius: "8px",
+        fontSize: "14px",
+        fontWeight: "500",
+        zIndex: "9999",
+        opacity: "1",
+        transition: "opacity 0.3s ease",
+        background: type === "success" ? "#2d6a4f" : type === "error" ? "#7b2d2d" : "#333",
+        color: "#fff",
+        boxShadow: "0 4px 16px rgba(0,0,0,0.3)"
+    });
 
     document.body.appendChild(toast);
 
     setTimeout(() => {
-        toast.style.transition = "opacity 0.3s";
         toast.style.opacity = "0";
         setTimeout(() => toast.remove(), 300);
     }, 2500);
@@ -224,62 +295,82 @@ function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+
 // =========================================
-//   UPDATE AUTH UI (FOR CHECKOUT AND OTHER PAGES)
+//   UPDATE AUTH UI
 // =========================================
+// FIX #7: Uses querySelectorAll so it works across any page structure
 function updateAuthUI() {
     try {
         const user = getCurrentUser();
-        const loginLink = document.getElementById("login-link");
-        const logoutLink = document.getElementById("logout-link");
-        const sideLoginLink = document.getElementById("side-login-link");
-        const sideLogoutLink = document.getElementById("side-logout-link");
 
-        if (user) {
-            if (loginLink) loginLink.style.display = "none";
-            if (logoutLink) logoutLink.style.display = "block";
-            if (sideLoginLink) sideLoginLink.style.display = "none";
-            if (sideLogoutLink) sideLogoutLink.style.display = "block";
-        } else {
-            if (loginLink) loginLink.style.display = "block";
-            if (logoutLink) logoutLink.style.display = "none";
-            if (sideLoginLink) sideLoginLink.style.display = "block";
-            if (sideLogoutLink) sideLogoutLink.style.display = "none";
+        // Support multiple login/logout links by class or ID
+        document.querySelectorAll("[data-auth='login']").forEach(el => {
+            el.style.display = user ? "none" : "block";
+        });
+
+        document.querySelectorAll("[data-auth='logout']").forEach(el => {
+            el.style.display = user ? "block" : "none";
+        });
+
+        // Fallback: also support the original hardcoded IDs
+        const ids = {
+            "login-link": !user,
+            "logout-link": !!user,
+            "side-login-link": !user,
+            "side-logout-link": !!user,
+        };
+
+        for (const [id, show] of Object.entries(ids)) {
+            const el = document.getElementById(id);
+            if (el) el.style.display = show ? "block" : "none";
         }
+
     } catch (e) {
-        console.error('Error updating auth UI:', e);
+        console.error("Error updating auth UI:", e);
     }
 }
+
+
+// =========================================
+//   CART HELPERS
+// =========================================
 function getCart() {
     const user = getCurrentUser();
-    if (user) {
-        return user.cart || [];
+    if (user) return user.cart || [];
+    try {
+        return JSON.parse(localStorage.getItem("guest_cart")) || [];
+    } catch {
+        return [];
     }
-    return JSON.parse(localStorage.getItem("guest_cart")) || [];
 }
 
 function saveCart(cart) {
     const user = getCurrentUser();
     if (user) {
-        user.cart = cart;
         updateCurrentUser({ cart });
     } else {
         localStorage.setItem("guest_cart", JSON.stringify(cart));
     }
 }
 
+
+// =========================================
+//   WISHLIST HELPERS
+// =========================================
 function getWishlist() {
     const user = getCurrentUser();
-    if (user) {
-        return user.wishlist || [];
+    if (user) return user.wishlist || [];
+    try {
+        return JSON.parse(localStorage.getItem("guest_wishlist")) || [];
+    } catch {
+        return [];
     }
-    return JSON.parse(localStorage.getItem("guest_wishlist")) || [];
 }
 
 function saveWishlist(wishlist) {
     const user = getCurrentUser();
     if (user) {
-        user.wishlist = wishlist;
         updateCurrentUser({ wishlist });
     } else {
         localStorage.setItem("guest_wishlist", JSON.stringify(wishlist));
