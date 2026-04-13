@@ -39,7 +39,7 @@ function renderCart() {
     let subtotal = 0;
 
     cart.forEach((item, index) => {
-        // FIX: support both 'qty' and 'quantity' keys for safety
+        // support both 'qty' and 'quantity' keys for safety
         const qty = item.qty || item.quantity || 1;
         // Ensure price is a number
         const price = parseFloat(item.price) || 0;

@@ -1,5 +1,5 @@
 // =========================================
-//   DHARIYA COUTURE — AUTH (FIXED VERSION)
+//   DHARIYA COUTURE — AUTH.JS
 // =========================================
 
 
@@ -31,7 +31,7 @@ async function login() {
 
     const users = JSON.parse(localStorage.getItem("dc_users")) || [];
 
-    // FIX #1: Compare hashed password
+    //  Compare hashed password
     const hashedPassword = await hashPassword(password);
     const user = users.find(
         u => u.username === username && u.password === hashedPassword
@@ -39,7 +39,7 @@ async function login() {
 
     if (user) {
 
-        // FIX #2: Merge guest cart & wishlist into user account on login
+        //  Merge guest cart & wishlist into user account on login
         const guestCart = JSON.parse(localStorage.getItem("guest_cart")) || [];
         const guestWishlist = JSON.parse(localStorage.getItem("guest_wishlist")) || [];
 
@@ -123,7 +123,7 @@ async function signup() {
 
     let users = JSON.parse(localStorage.getItem("dc_users")) || [];
 
-    // FIX #3: Check both username AND email for duplicates
+    //  Check both username AND email for duplicates
     const usernameTaken = users.find(u => u.username === username);
     if (usernameTaken) {
         showMsg(msgEl, "Username already taken ❌", "error");
@@ -136,7 +136,7 @@ async function signup() {
         return;
     }
 
-    // FIX #1: Hash password before storing
+    //  Hash password before storing
     const hashedPassword = await hashPassword(password);
 
     // CREATE FULL USER PROFILE
@@ -173,7 +173,7 @@ async function signup() {
 // =========================================
 //   GET CURRENT USER
 // =========================================
-// FIX #4: Wrapped in try/catch to prevent crash on corrupted JSON
+//  Wrapped in try/catch to prevent crash on corrupted JSON
 function getCurrentUser() {
     try {
         return JSON.parse(localStorage.getItem("dc_current_user")) || null;
@@ -240,7 +240,7 @@ function handleLogout(e) {
 //   HELPERS
 // =========================================
 
-// FIX #6: showMsg now auto-clears after 4 seconds
+//  showMsg now auto-clears after 4 seconds
 function showMsg(el, message, type) {
     if (!el) return;
     el.textContent = message;
@@ -299,7 +299,7 @@ function isValidEmail(email) {
 // =========================================
 //   UPDATE AUTH UI
 // =========================================
-// FIX #7: Uses querySelectorAll so it works across any page structure
+//  Uses querySelectorAll so it works across any page structure
 function updateAuthUI() {
     try {
         const user = getCurrentUser();

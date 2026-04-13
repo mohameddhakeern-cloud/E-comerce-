@@ -9,6 +9,20 @@
     <link rel="stylesheet" href="contact.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* Overlay backdrop */
+        #nav-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 998;
+        }
+        #nav-overlay.active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
 
@@ -39,12 +53,16 @@
 
         <div class="nav-right">
             <div class="cart"><a href="cart.html">🛒 <span id="cart-count">0</span></a></div>
+            <div class="wishlist"><a href="wishlist.html">♡ <span id="wishlist-count">0</span></a></div>
             <i class="fa-solid fa-bars menu-toggle" onclick="openNav()"></i>
         </div>
     </nav>
 
-   <!-- SIDE NAV -->
-    <div class="side-navbar">
+    <!-- OVERLAY (closes nav when clicked) -->
+    <div id="nav-overlay" onclick="closeNav()"></div>
+
+    <!-- SIDE NAV — id added so JS can find it -->
+    <div class="side-navbar" id="side-navbar">
         <i class="fa-solid fa-xmark close-btn" onclick="closeNav()"></i>
         <a href="index.html">HOME</a>
         <a href="collection.html">COLLECTIONS</a>
@@ -57,7 +75,7 @@
         <a href="login.html" id="side-login-link">Login</a>
         <a href="#" id="side-logout-link" onclick="handleLogout(event)">Logout</a>
     </div>
-    
+
 
     <!-- BANNER -->
     <div class="contact-banner">
@@ -127,7 +145,8 @@
                 <h2>Send us a Message</h2>
                 <p>All fields marked * are required</p>
             </div>
-            <form class="contact-form" onsubmit="handleSubmit(event)">
+            <!-- onsubmit removed — button handles submission to avoid double-firing -->
+            <form class="contact-form" id="contactForm">
                 <div class="form-row">
                     <div class="field-group">
                         <label>Your Name *</label>
@@ -202,35 +221,52 @@
 
     <script>
         function openNav() {
-            document.getElementById('sideNav').classList.add('active');
-            document.getElementById('overlay').classList.add('active');
+            document.getElementById('side-navbar').classList.add('active');
+            document.getElementById('nav-overlay').classList.add('active');
         }
+
         function closeNav() {
-            document.getElementById('sideNav').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
+            document.getElementById('side-navbar').classList.remove('active');
+            document.getElementById('nav-overlay').classList.remove('active');
         }
+
         function updateCount() {
             const area = document.getElementById('msgArea');
             document.getElementById('charCount').textContent = area.value.length;
         }
+
         function handleSubmit(e) {
             e.preventDefault();
+            // Validate the form before marking as sent
+            const form = document.getElementById('contactForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
             const btn = document.getElementById('submitBtn');
             btn.innerHTML = 'Message Sent &nbsp;<i class="fa-solid fa-check"></i>';
             btn.classList.add('sent');
+            btn.disabled = true;
         }
+
         // Login / Logout toggle based on localStorage auth flag
         (function () {
             const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
             const loginLink = document.getElementById('login-link');
             const logoutLink = document.getElementById('logout-link');
+            const sideLoginLink = document.getElementById('side-login-link');
+            const sideLogoutLink = document.getElementById('side-logout-link');
 
             if (isLoggedIn) {
                 loginLink.style.display = 'none';
                 logoutLink.style.display = 'block';
+                sideLoginLink.style.display = 'none';
+                sideLogoutLink.style.display = 'block';
             } else {
                 loginLink.style.display = 'block';
                 logoutLink.style.display = 'none';
+                sideLoginLink.style.display = 'block';
+                sideLogoutLink.style.display = 'none';
             }
         })();
 
@@ -239,7 +275,8 @@
             localStorage.removeItem('isLoggedIn');
             window.location.href = 'login.html';
         }
-  
     </script>
+
+    <script src="index.js"></script>
 </body>
 </html>

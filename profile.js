@@ -1,5 +1,5 @@
 // =========================================
-//   DHARIYA COUTURE — PROFILE.JS (FINAL)
+//   DHARIYA COUTURE — PROFILE.JS 
 // =========================================
 
 document.addEventListener("DOMContentLoaded", () => {
