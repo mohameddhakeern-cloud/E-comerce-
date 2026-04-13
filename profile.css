@@ -222,6 +222,24 @@ body {
   color: var(--black);
 }
 
+.tab-item a{
+  color: var(--gold);
+  text-decoration: none;
+}
+.tab-item a:hover {
+  color: var(--gold-light);
+  text-decoration: underline;
+}
+
+.profile-content a {
+  color: var(--gold-light);
+  text-decoration: none;
+}
+.profile-content a:hover {
+  color: var(--mid);
+  text-decoration: underline;
+}
+
 /* ================= HEADER ================= */
 .panel-header {
   display: flex;
